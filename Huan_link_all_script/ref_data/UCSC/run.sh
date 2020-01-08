@@ -1,0 +1,1 @@
+wget -c http://hgdownload.cse.ucsc.edu/goldenPath/hg19/database/snp151Common.txt.gz
