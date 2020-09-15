@@ -47,7 +47,7 @@ for (cutoff in cutoffs){
     figure_name <-paste("bar_plot_cutoff_",cutoff,"_snp_number_in_different_interval_all_",xQTL,".pdf", sep = "")
     top_title<-paste(xQTL,", cutoff = ",cutoff, sep = "")
     pdf(figure_name,height = 15,width = 30) 
-    marrangeGrob(figure_list,nrow=2,ncol=3,top = top_title)  #指定list的具体位置，也可以直接用整个list组装，比如：figure_list
+    p1<-marrangeGrob(figure_list,nrow=2,ncol=3,top = top_title)  #指定list的具体位置，也可以直接用整个list组装，比如：figure_list
     dev.off()
 }
 

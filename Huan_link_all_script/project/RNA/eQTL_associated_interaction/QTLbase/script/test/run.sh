@@ -29,7 +29,9 @@ perl filter_chr22.pl ##将../output/01_all_kinds_QTL.txt 中chr22过滤得../out
 #得所有的具有 pop 和tissue的文件得../output/merge_QTL_all_QTLtype_pop.txt.gz
 perl judge_xQTL_cis_trans.pl ##将../output/merge_QTL_all_QTLtype_pop.txt.gz 按照1MB和10MB划分cis和trans， 分别得../output/merge_QTL_all_QTLtype_pop_cistrans.txt.gz
 perl region_QTL.pl #
+#--------------------
 
+#--------------
 Rscript per_region_QTL_number.R #
 Rscript QTL_density.R
 Rscript NHPoisson.R 
@@ -108,9 +110,20 @@ Rscript pvalue_density.R
 #
 perl analysis_json.pl
 
+#-------------------------------------
+Rscript 08_heatmap_average_1MB_per_chr_test.R  ##画全部的QTL,spread的后的na 不替换为0，直接进行(用的是max emplambda)
+Rscript 08_heatmap_average_1MB_per_chr.R  #画emplambda的heatmap,用 orginal, times scale 和 max min scale, less
 
-
-
+#---------------------------------------------------
+Rscript 12_Point_plot_emplambda_relevance_cis_trans_lm_pdf.R
+Rscript 12_Point_plot_emplambda_relevance_cis_trans_lm_png.R
+Rscript 12_Point_plot_emplambda_relevance_cis_trans_glm_pdf.R
+Rscript 12_Point_plot_emplambda_relevance_cis_trans_glm_png.R
+Rscript 12_Point_plot_emplambda_relevance_cis_trans_loess_png.R
+Rscript 12_Point_plot_emplambda_relevance_trans_pdf_fitting.R
+Rscript 12_Point_plot_emplambda_relevance_cis_pdf_fitting.R
+Rscript 12_Point_plot_emplambda_relevance_trans_png_fitting.R
+Rscript 12_Point_plot_emplambda_relevance_cis_png_fitting.R
 
 
 #--------------- 修改 emplambdaB.fun中plotEmp=FALSE
@@ -125,21 +138,3 @@ ALL_caQTL
 53957.reQTL
 
 
-
-#--------------------------running 
-55665.ALL_eQTL
-59165.mQTL
-
-
-#--------------------------finish
-29022.sQTL
-9146.reQTL #数据少
-9316.metaQTL # no data
-11732.pQTL
-57860.cerQTL # no data
-61861.ALL_edQTL #data 很少
-31551.miQTL # no data
-14626.riboQTL # no data
-46226.ALL_caQTL
-52374.lncRNAQTL # no data
-ALL_hQTL

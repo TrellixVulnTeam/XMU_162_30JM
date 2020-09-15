@@ -6,6 +6,7 @@ library(stringr)
 library(gcookbook)
 library(gridExtra)
 library(ggpubr)
+library(data.table)
 
 # R >= 3.1.1 is needed
 
@@ -65,15 +66,16 @@ if(dir.exists(output_dir)){
     dir.create(output_dir)
 }
 #----------------------------------
-org<-read.table("../../output/merge_QTL_all_QTLtype_pop.txt.gz",header = T,sep = "\t") %>% as.data.frame()
+org<-read.table("../../output/merge_QTL_all_QTLtype_pop_1kg_Completion.txt.gz",header = T,sep = "\t") %>% as.data.frame()
 org_pop <- filter(org,QTL_type == "eQTL")
+rm(org)
 # org_pop <- org
 #--------------------500k
 interval<-seq(from=1000, to=5000, by=1000)
 # interval2<-seq(from=10000, to=100000, by=10000)
 # interval=c(interval1,interval2) #两个interval合并
 # cutoffs= c(7, 24.25)
-cutoffs= c(7, 7.3)
+cutoffs= c(7.3, 7)
 for (cutoff in cutoffs){
     for (j in interval){
         dir_name = paste("all_eQTL_cutoff_",cutoff,"_int",j, sep = "")
@@ -89,10 +91,14 @@ for (cutoff in cutoffs){
         rs3 <- data.frame()
         for(i in c(1:22)){
             org2<-filter(org_pop, SNP_chr==i)
+            org2$SNP_pos<-as.numeric(as.character(org2$SNP_pos))
+            org2$SNP_chr<-as.numeric(as.character(org2$SNP_chr))
             #-------------------------------------- snp has unique p，min_p
             org_p <- org2%>%dplyr::select(SNP_pos,Pvalue)%>%unique()
+            rm(org2)
             org_pg <- group_by(org_p, SNP_pos)
             org1<-summarise(org_pg,min_p = min(Pvalue))%>%as.data.frame()
+            rm(org_pg)
             #-----------------------------------
             org1 <- org1[order(org1$SNP_pos), ]
             BarEv <- POTevents.fun(T = -log10(org1$min_p), thres = cutoff, date = org1$SNP_pos) #POTevents.fun
@@ -107,7 +113,7 @@ for (cutoff in cutoffs){
             tmp2<-cbind(emplambda=emplambdaB$emplambda, t=emplambdaB$t,chr=i) %>% as.data.frame()
             rs1 <- bind_rows(rs1,tmp1)
             rs2 <- bind_rows(rs2,tmp2)
-            rs3 <- bind_rows(rs3,tmp1)
+            rs3 <- bind_rows(rs3,tmp3)
             print(i)
         }
         output_file1<-paste("../../output/ALL_eQTL/NHPoisson_POTevents_Px_cutoff_",cutoff,"_all_eQTL.txt", sep = "")

@@ -25,8 +25,9 @@ foreach my $cutoff(@cutoffs){
     print $O1 "$header\n";
     foreach my $i(@intervals) { #interval
         my %hash1;
-        my $f1 = "../../output/ALL_${xQTL}/NHPoisson_emplambda_interval_${i}cutoff_${cutoff}_all_${xQTL}.txt";
-        open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
+        my $f1 = "../../output/ALL_${xQTL}/QTLbase_NHPoisson_emplambda_interval_${i}_cutoff_${cutoff}_all_${xQTL}.txt.gz";
+        open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件
+        # open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
         my @values=();
         while(<$I1>)
         {
@@ -48,9 +49,10 @@ foreach my $cutoff(@cutoffs){
         my $score_interval = 0.01;
         my $range = $max_emplambda+$score_interval;
         for (my $j=$score_interval;$j<$range;$j=$j+$score_interval){ #emplambda 间隔
-            open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
+            my $f2 =$f1;
+            open( my $I2 ,"gzip -dc $f2|") or die ("can not open input file '$f2' \n"); #读压缩文件
             # print "$j\n";
-            while(<$I1>)
+            while(<$I2>)
             {
                 chomp;
                 unless(/^emplambda/){
