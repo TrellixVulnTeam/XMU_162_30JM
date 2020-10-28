@@ -13,3 +13,4 @@ gzip ../../../output/ALL_eQTL/cis_trans/QTLbase_NHPoisson_emplambda_interval_100
 
 # perl 04_merge_all_cis_trans.pl #将 ../../../output/ALL_eQTL/cis_trans/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_${name}_eQTL.txt.gz "cis_1MB","trans_1MB","cis_10MB","trans_10MB" merge到一起得
 # #../../../output/ALL_eQTL/cis_trans/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_cis_trans.txt.gz
+perl 04_cis_trans_normalized_bedgraph.pl

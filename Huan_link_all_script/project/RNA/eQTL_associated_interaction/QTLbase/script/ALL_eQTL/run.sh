@@ -18,8 +18,23 @@ Rscript bar_plot_NHPoisson_all_eQTL2_log.R
 Rscript point_Plot_emplambda_distance.R
 qsub eQTL.job
 #qdel nubmer #是kill这个进程（比如 qdel 113514）
-perl normalized.pl #将"../../output/ALL_eQTL/cis_trans/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_all_cis_trans_eQTL.txt.gz" 处理成$cis_or_trans:$emplambda的格式，并将位置处理为bed
-#得../../output/ALL_eQTL/cis_trans/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_all_cis_trans_eQTL_normalized.bed.gz
+perl 04_normalized_bed.pl #将"../../output/ALL_eQTL/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_all_eQTL.txt.gz
+#得"../../output/ALL_eQTL/cis_trans/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_all_eQTL_normalied.bed.gz"
 
 zless ../../output/ALL_eQTL/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_all_cis_trans_eQTL_normalized.bed.gz |awk 'NR>1' | sort -k1,1 -k2,2n > ../../output/ALL_eQTL/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_all_cis_trans_eQTL_normalized_sorted.bed
 gzip ../../output/ALL_eQTL/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_all_cis_trans_eQTL_normalized_sorted.bed
+
+
+qsub eQTL_supp.job
+
+#-------------
+Rscript filter_chr1_QTLbase.R
+perl filter_chr1_QTLbase.pl
+perl filter_all_QTLbase.pl 
+perl filter_
+perl 02_filter_emplambda_in_and_out_QTLbase.pl
+
+perl 031_histgram_interval.R
+Rscript qqplot.R
+
+Rscript ks_test.R

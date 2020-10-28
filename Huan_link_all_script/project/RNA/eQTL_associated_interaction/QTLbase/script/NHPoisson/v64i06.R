@@ -27,7 +27,7 @@ set.seed(1138)
 data("BarTxTn", package = "NHPoisson")
 dateB <- cbind(BarTxTn$ano, BarTxTn$mes, BarTxTn$diames)
 BarEv <- POTevents.fun(T = BarTxTn$Tx, thres = 318, date = dateB)
-
+#Calculate extreme events using a POT approach
 # This function calculates the characteristics of the extreme events of a series(xi) defined using a peak
 # over threshold (POT) method with an extreme threshold. The initial and the maximum intensity
 # positions, the mean excess, the maximum excess and the length of each event are calculated.
@@ -92,8 +92,8 @@ graphresU.fun(unires = resB$unires, posE = modB.final@posE, Xvariables = cbind(c
   BarTxTn$dia), namXv = c("cos", "sin", "Txm31", "summer day index"), tit = "BARCELONA; cos, sin, Txm31", 
   addlow = FALSE)
 
-ResDB <- CalcResD.fun(mlePP = modB.final, lint = 153)
-
+ResDB <- CalcResD.fun(mlePP = modB.final, lint = 153) #Calculate NHPP residuals on disjoint intervals 
+#CalcRes.fun
 qqnorm(ResDB$RawRes)
 
 graphrate.fun(ResDB, tit = "BARCELONA; cos, sin, Txm31")

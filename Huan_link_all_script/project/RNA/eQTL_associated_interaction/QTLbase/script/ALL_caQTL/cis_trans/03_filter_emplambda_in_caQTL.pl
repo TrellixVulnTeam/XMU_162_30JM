@@ -61,16 +61,14 @@ foreach my $name(@qtl){
     open( my $I2 ,"gzip -dc $f2|") or die ("can not open input file '$f2' \n"); #读压缩文件
     my $fo1 = "../../../output/ALL_caQTL/cis_trans/QTLbase_NHPoisson_emplambda_interval_1000_cutoff_7.3_${name}_caQTL.txt.gz";
     open my $O1, "| gzip >$fo1" or die $!;
+    print $O1 "emplambda\tt\tchr\n";
 
     print "start\t$name\n";
     my $namew= $name;
     while(<$I2>)
     {
         chomp;
-        if(/emplambda/){
-            print $O1 "$_\n";
-        }
-        else{
+        unless(/emplambda/){
             my @f = split/\t/;
             my $emplambda =$f[0];
             my $t =$f[1]; 

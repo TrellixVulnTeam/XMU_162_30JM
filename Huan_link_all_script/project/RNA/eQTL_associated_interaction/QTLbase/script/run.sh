@@ -30,6 +30,17 @@ perl merge_1kg_sub_pop.pl #将/share/data0/1kg_phase3_v5_hg19/五个人种的all
 
 perl 01_Completion_snp_for_xQTL_by_1kg.pl # 用../output/all_1kg_phase3_v5_hg19_snp.txt.gz 补全../output/merge_QTL_all_QTLtype_pop.txt.gz 得../output/merge_QTL_all_QTLtype_pop_1kg_Completion.txt.gz
 #各个文件夹进行NHPoisson
+perl 011_unique_1kg_phase3_v5_snp.pl ##将"/share/data0/1kg_phase3_v5_hg19/EUR/1kg.phase3.v5.shapeit2.eur.hg19.all.SNPs.uniq_posID.vcf.gz" 的 SNP 提出来得 在一起得../output/011_eur_1kg_phase3_v5_hg19_snp.txt.gz
+Rscript 012_random_sample_snp_for_ld_block.R #../output/011_eur_1kg_phase3_v5_hg19_snp.txt.gz 每条染色体随机2个snp,重复10次,得../output/012_random_sample_snp_for_ld_block.txt.gz
+gunzip ../output/012_random_sample_snp_for_ld_block.txt.gz
+bash test_snp_number_in_LD.sh
+perl 013_count_averge_snp_in_ld.pl # 计算../output/012_random_sample_snp_for_ld_block_r2_${i}.tags.list $i =0.5,0.7,0.8 中ld中平均包含的snp的个数得../output/013_count_averge_snp_in_ld.txt,所以取init=6
+Rscript 014_NHP.R
+Rscript 014_NHP_small.R
+Rscript 014_NHP_eQTL.R
+perl 015_filter_eQTL_chr_in_parameters.pl #将../output/ALL_eQTL/NHPoisson_emplambda_interval_${i}cutoff_7.3_all_eQTL.txt.gz 中的 chr1,chr2中的数据提出来得../output/ALL_eQTL/chr1/NHPoisson_emplambda_interval_${i}cutoff_7.3_all_eQTL.bedgraph
+scp -r -P 22109 /home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/ALL_eQTL/cis_trans/  huanhuan@121.192.180.20:/public/home/huanhuan/project/bedgraph_to_wg/
+Rscript 016_fitdistrbution.R
 
 perl 02_filter_emplambda_in_QTLbase.pl #将../output/ALL_${xQTL}/NHPoisson_emplambda_interval_1000cutoff_7.3_all_${xQTL}.txt 中的QTLbase中../output/merge_QTL_all_QTLtype_pop.txt.gz的数据过滤出来，
 #得../output/ALL_${xQTL}/QTLbase_NHPoisson_emplambda_interval_1000cutoff_7.3_all_${xQTL}.txt.gz
@@ -146,4 +157,3 @@ ALL_caQTL
 
 
 #----------------------
-"
