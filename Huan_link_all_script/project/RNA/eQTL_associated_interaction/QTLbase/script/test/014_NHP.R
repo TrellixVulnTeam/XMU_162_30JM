@@ -90,7 +90,7 @@ for(i in c(1:22)){
     org2<-filter(org_pop, SNP_chr==i)
     org2$SNP_pos<-as.numeric(as.character(org2$SNP_pos))
     org2$SNP_chr<-as.numeric(as.character(org2$SNP_chr))
-    #-------------------------------------- snp has unique p，min_p
+    #-------------------------------------- snp has unique p,min_p
     org_p <- org2%>%dplyr::select(SNP_pos,Pvalue)%>%unique()
     rm(org2)
     org_pg <- group_by(org_p, SNP_pos)

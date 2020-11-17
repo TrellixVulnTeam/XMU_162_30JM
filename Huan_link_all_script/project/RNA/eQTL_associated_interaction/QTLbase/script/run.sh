@@ -35,13 +35,22 @@ Rscript 012_random_sample_snp_for_ld_block.R #../output/011_eur_1kg_phase3_v5_hg
 gunzip ../output/012_random_sample_snp_for_ld_block.txt.gz
 bash test_snp_number_in_LD.sh
 perl 013_count_averge_snp_in_ld.pl # 计算../output/012_random_sample_snp_for_ld_block_r2_${i}.tags.list $i =0.5,0.7,0.8 中ld中平均包含的snp的个数得../output/013_count_averge_snp_in_ld.txt,所以取init=6
-Rscript 014_NHP.R
-Rscript 014_NHP_small.R
+# Rscript 014_NHP.R
+# Rscript 014_NHP_small.R
+Rscript 014_NHP_small_par.R
+Rscript 014_NHP_big_par.R
 Rscript 014_NHP_eQTL.R
+
+
 perl 015_filter_eQTL_chr_in_parameters.pl #将../output/ALL_eQTL/NHPoisson_emplambda_interval_${i}cutoff_7.3_all_eQTL.txt.gz 中的 chr1,chr2中的数据提出来得../output/ALL_eQTL/chr1/NHPoisson_emplambda_interval_${i}cutoff_7.3_all_eQTL.bedgraph
 scp -r -P 22109 /home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/ALL_eQTL/cis_trans/  huanhuan@121.192.180.20:/public/home/huanhuan/project/bedgraph_to_wg/
 Rscript 016_fitdistrbution.R
 
+#--------------------
+perl 017_filter_hotspot.pl ##@QTLs =("hQTL","mQTL","sQTL")在@interval = (6,7,8,9,12,15)时的hotspot(segment),得"../output/ALL_${QTL}/hotspot/interval_${j}_segment_hotspot.txt.gz"; 得point 热点../output/ALL_${QTL}/hotspot/interval_${j}_point_hotspot.txt.gz
+perl 017_filter_hotspot_18.pl ###@QTLs =("hQTL","mQTL","sQTL")在interval = 18时的hotspot(segment),得"../output/ALL_${QTL}/hotspot/interval_${j}_segment_hotspot.txt.gz";得point 热点../output/ALL_${QTL}/hotspot/interval_${j}_point_hotspot.txt.gz
+#--------------------
+bash 018_bedtools_makewindows_intersect.sh 
 perl 02_filter_emplambda_in_QTLbase.pl #将../output/ALL_${xQTL}/NHPoisson_emplambda_interval_1000cutoff_7.3_all_${xQTL}.txt 中的QTLbase中../output/merge_QTL_all_QTLtype_pop.txt.gz的数据过滤出来，
 #得../output/ALL_${xQTL}/QTLbase_NHPoisson_emplambda_interval_1000cutoff_7.3_all_${xQTL}.txt.gz
 perl 02_filter_emplambda_in_QTLbase_all_par.pl # #将../output/ALL_${xQTL}/NHPoisson_emplambda_interval_${interval}cutoff_${cutoff}_all_${xQTL}.txt.gz 中的QTLbase中../output/merge_QTL_all_QTLtype_pop.txt.gz的数据过滤出来，

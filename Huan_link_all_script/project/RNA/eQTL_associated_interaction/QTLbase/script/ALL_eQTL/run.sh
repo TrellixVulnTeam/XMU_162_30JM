@@ -31,10 +31,29 @@ qsub eQTL_supp.job
 Rscript filter_chr1_QTLbase.R
 perl filter_chr1_QTLbase.pl
 perl filter_all_QTLbase.pl 
-perl filter_
 perl 02_filter_emplambda_in_and_out_QTLbase.pl
 
-perl 031_histgram_interval.R
+perl 031_histgram_density_interval.R
+perl 032_histgram_density_interval_chr_specific.R
+
+
 Rscript qqplot.R
 
 Rscript ks_test.R
+
+Rscript qqplot_specific.R
+
+Rscript hotspot_overlap.R
+perl hotspot_overlap.pl
+
+#--------------------------------
+
+perl filter_hotspot_eQTL.pl ###QTLs =eQTL在@interval = (6,7,8,9,12,15)时的hotspot(segment),得"../output/ALL_${QTL}/hotspot/interval_${j}_segment_hotspot.txt.gz"; 得point 热点../../output/ALL_${QTL}/hotspot/interval_${j}_point_hotspot.txt.gz
+perl filter_hotspot_eQTL_18.pl ###@QTLs =("hQTL","mQTL","sQTL")在interval = 18时的hotspot(segment),得"../output/ALL_${QTL}/hotspot/interval_${j}_segment_hotspot.txt.gz", 得point 热点../../output/ALL_${QTL}/hotspot/interval_${j}_point_hotspot.txt.gz
+bash bedtools_intersect_hotspot.sh #寻找interval 为6,7,8,9,12,15,18时共同的hotspot,得../../output/ALL_eQTL/hotspot/segment_overlap/15_6_7_8_9_12_18_segment_hotspot.bed.gz
+
+#---------------------
+perl filter_NON_hotspot_eQTL.pl ###QTLs =eQTL在@interval = (6,7,8,9,12,15)时的NON hotspot(segment),得"../output/ALL_${QTL}/un_hotspot/interval_${j}_segment_UNhotspot.txt.gz"; 得point 热点../../output/ALL_${QTL}/un_hotspot/interval_${j}_point_UNhotspot.txt.gz
+perl filter_NON_hotspot_eQTL_18.pl ###QTLs =eQTL在interval = 18时的NON hotspot(segment),得"../output/ALL_${QTL}/un_hotspot/interval_${j}_segment_UNhotspot.txt.gz", 得point 热点../../output/ALL_${QTL}/un_hotspot/interval_${j}_point_UNhotspot.txt.gz
+
+bash bedtools_intersect_non_hotspot.sh #寻找interval 为6,7,8,9,12,15,18时共同的 non hotspot,得../../output/ALL_eQTL/un_hotspot/segment_overlap/15_6_7_8_9_12_18_segment_un_hotspot.bed.gz
