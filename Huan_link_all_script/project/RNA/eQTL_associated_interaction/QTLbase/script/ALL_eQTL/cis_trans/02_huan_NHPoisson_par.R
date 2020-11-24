@@ -124,7 +124,7 @@ cutoff =7.3
     org <- read.table(file,header = T,sep = "\t") %>% as.data.frame()
     # number_list <- c(10:20)
     # number_list <- c(15:20)
-    number_list <- c(10:20)
+    number_list <- c(6,7,8,9)
     mclapply(number_list, function(num){
         ProcessBedGz(j = num, org = org, cutoff = cutoff, name = name)
     }, mc.cores = 4)
@@ -138,7 +138,7 @@ cutoff =7.3
     org <- read.table(file,header = T,sep = "\t") %>% as.data.frame()
     # number_list <- c(10:20)
     # number_list <- c(15:20)
-    number_list <- c(10:20)
+    number_list <- c(6,7,8,9)
     mclapply(number_list, function(num){
         ProcessBedGz(j = num, org = org, cutoff = cutoff, name = name)
     }, mc.cores = 4)
@@ -150,7 +150,7 @@ cutoff =7.3
     org <- read.table(file,header = T,sep = "\t") %>% as.data.frame()
     # number_list <- c(10:20)
     # number_list <- c(15:20)
-    number_list <- c(10:20)
+    number_list <- c(6,7,8,9)
     mclapply(number_list, function(num){
         ProcessBedGz(j = num, org = org, cutoff = cutoff, name = name)
     }, mc.cores = 4)
@@ -163,7 +163,7 @@ cutoff =7.3
     org <- read.table(file,header = T,sep = "\t") %>% as.data.frame()
     # number_list <- c(10:20)
     # number_list <- c(15:20)
-    number_list <- c(10:20)
+    number_list <- c(6,7,8,9)
     mclapply(number_list, function(num){
         ProcessBedGz(j = num, org = org, cutoff = cutoff, name = name)
     }, mc.cores = 4)

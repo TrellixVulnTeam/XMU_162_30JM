@@ -17,6 +17,6 @@ bedtools intersect -a ../../output/ALL_eQTL/hotspot/segment_overlap/15_6_7_8_9_1
 for i in $( seq 22);
 do
 	echo $i;
-    bedtools intersect -a ../../output/ALL_eQTL/hotspot/segment_overlap/15_6_7_8_9_12_18_segment_hotspot.bed.gz -b ../../annotation_data/conservation/phastCons100way/normalized_per_chr/chr$i.sorted_merge_phastCons100way.bed.gz -wa -wb | gzip > ../output/conservation_per_chr_non_hotspot/QTLbase_chr$i.all_eQTL_phastCons100way.bed.gz
+    bedtools intersect -a ../../output/ALL_eQTL/hotspot/segment_overlap/15_6_7_8_9_12_18_segment_hotspot.bed.gz -b ../../annotation_data/conservation/phastCons100way/normalized_per_chr/chr$i.sorted_merge_phastCons100way.bed.gz -wa -wb | gzip > ../output/conservation_per_chr_hotspot/QTLbase_chr$i.all_eQTL_phastCons100way.bed.gz
 done
 zcat ../output/conservation_per_chr_hotspot/* | gzip > ../output/annotation/hotspot/QTLbase_all_eQTL_hotspot_15_6_7_8_9_12_18_phastCons100way.bed.gz
