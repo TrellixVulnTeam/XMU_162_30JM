@@ -33,11 +33,11 @@ for(type in types){
   i=i+1
 }
 top_title= "Interval overlap"
-pdf("boxplot_violin_plot_cutoff_7.3_interval_15_cis_trans.pdf",height = 8,width = 8) 
+pdf("boxplot_violin_plot_cutoff_7.3_interval_overlap_cis_trans.pdf",height = 8,width = 8) 
 p1<-marrangeGrob(figure_list,nrow=2,ncol=2,top = top_title)  
 print(p1)
 dev.off()
-pdf("boxplot_plot_cutoff_7.3_interval_15_cis_trans.pdf",height = 8,width = 8) 
+pdf("boxplot_plot_cutoff_7.3_interval_overlap_cis_trans.pdf",height = 8,width = 8) 
 p1<-marrangeGrob(box_list,nrow=2,ncol=2,top = top_title)  
 print(p1)
 dev.off()

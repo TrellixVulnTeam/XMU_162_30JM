@@ -28,9 +28,9 @@ perl 03_filter_non_hotspot_cis_trans_eQTL.pl ####QTLs =eQTL,在@interval = (6,7,
         # 得point 非热点"../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_point_non_hotspot.txt.gz"
 perl 03_filter_hotspot_cis_trans_eQTL_interval_18.pl # ###@QTLs =("eQTL")在@interval = 18时的hotspot(segment),得"../../../output/ALL_${QTL}/cis_trans/hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_hotspot.txt.gz"; 
 #得point 热点"../../../output/ALL_${QTL}/cis_trans/hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_point_hotspot.txt.gz"
-perl 03_filter_non_hotspot_cis_trans_eQTL_interval_18.pl ####QTLs =eQTL,在@interval = 18时的non hotspot(segment),得"../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_non_hotspot.txt.gz";
-        # 得point 非热点"../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_point_non_hotspot.txt.gz"
-        
+perl 03_filter_non_hotspot_cis_trans_eQTL_interval_18.pl ####QTLs =eQTL,在@interval = 18时的non hotspot(segment),得"../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_non_hotspot.txt.gz"
+#及seegent_non_hotspot.bed.gz,得point 非热点"../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_point_non_hotspot.txt.gz"
+Rscript 031_histgram_density_length_of_segment.R #plot distribution of segment in hotspot and non-hotspot 
 #-------------------------------- interval 15
         perl 04_annotation_interval_15.pl ##@types=("cis_1MB","cis_10MB","trans_1MB","trans_10MB")和@groups = ("hotspot","non_hotspot")时,用annotation_bedtools_intersect.sh进行annotation,得$output_dir/RBP_$input_file_base_name
         Rscript 05_merge_trans_cis_eQTL_hotspot_interval15_annotation.R #将/home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/ALL_eQTL/cis_trans/$group/$type/ 下的文件进行annotation,得
@@ -101,3 +101,26 @@ perl 03_filter_non_hotspot_cis_trans_eQTL_interval_18.pl ####QTLs =eQTL,在@inte
         Rscript 08_interval_18_fisher_exact_test.R #对"/home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/ALL_eQTL/cis_trans/interval_18/annotation_out/fisher_exact_test/prepare/07_interval_18_prepare_fisher_test.txt"
         #进行fisher exact test,得"/home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/ALL_eQTL/cis_trans/interval_18/annotation_out/fisher_exact_test/prepare/07_interval_18_prepare_fisher_test.txt"
         Rscript 09_interval_18_boxplot_for_factor_score.R #对/home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/ALL_eQTL/cis_trans/interval_18/annotation_out/factors_score/ 中同一种type进行boxplot比较       
+#--------------------
+        perl 10_bedtools_fisher_test.pl 
+
+        bedtools fisher -F 0.05 -a ../../../output/ALL_eQTL/cis_trans/hotspot/interval_12_cutoff_7.3_cis_10MB_eQTL_segment_hotspot_length_of_segment.bed.gz  -b ../../../annotation_data/circRNA/03_needed_hsa_hg19_circRNA_sorted_chr1_22.bed.gz -g  /home/huanhuan/ref_data/UCSC/hg19.chrom1_22_sizes_sorted.txt
+
+
+
+
+        bedtools fisher -F 0.9 -a ../../../output/ALL_eQTL/cis_trans/hotspot/interval_12_cutoff_7.3_cis_10MB_eQTL_segment_hotspot_length_of_segment.bed.gz  -b ../../../annotation_data/enhancer/fantom5_enhancers_phase1_phase2_sorted.bed.gz -g  /home/huanhuan/ref_data/UCSC/hg19.chrom1_22_sizes_sorted.txt 
+
+#------------------------------
+        perl 04_annotation_different_interval.pl ##@types=("cis_1MB","cis_10MB","trans_1MB","trans_10MB")和@groups = ("hotspot","non_hotspot"),@intervals = (6,7,8,9,12,15,18),@fractions = (0.5,0.6,0.7,0.8,0.9,1)时,用annotation_bedtools_intersect_v2.sh进行annotation,得$output_dir/RBP_$input_file_base_name
+        Rscript 05_merge_trans_cis_eQTL_hotspot_annotation_interval6.R
+        Rscript 05_merge_trans_cis_eQTL_hotspot_annotation_interval7.R
+        Rscript 05_merge_trans_cis_eQTL_hotspot_annotation_interval8.R
+        Rscript 05_merge_trans_cis_eQTL_hotspot_annotation_interval9.R
+        Rscript 05_merge_trans_cis_eQTL_hotspot_annotation_interval12.R
+        Rscript 05_merge_trans_cis_eQTL_hotspot_annotation_interval15.R
+        Rscript 05_merge_trans_cis_eQTL_hotspot_annotation_interval18.R
+
+        perl 07_prepare_for_fisher.pl ###看各种factor在#"~/project/RNA/eQTL_associated_interaction/QTLbase/output/ALL_eQTL/cis_trans/fisher_exact_test_V2/annotation_out/hotspot/05_annotation_merge_${type}_interval_${interval}_overlap_fraction_${fraction}.txt.gz" 的fisher exact test 准备数据,
+        #得"/home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/ALL_eQTL/cis_trans/fisher_exact_test_V2/fisher_exact_test/interval_${interval}/07_prepare_fisher_test.txt"
+        Rscript 08_overlap_fisher_exact_test.R

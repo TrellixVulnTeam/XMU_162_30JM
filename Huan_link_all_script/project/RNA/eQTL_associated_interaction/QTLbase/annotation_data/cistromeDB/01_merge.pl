@@ -8,8 +8,8 @@ use List::Util qw/max min/;
 use List::Util qw/sum/;
 
 
-# my @dirs = ("./Human_FACTOR/human_factor","./HISTONE_MARK_AND_VARIANT/human_hm","./Human_CHROMATIN_Accessibility/human_ca");
-my @dirs = ("./Human_CHROMATIN_Accessibility/human_ca");
+my @dirs = ("./Human_FACTOR/human_factor","./HISTONE_MARK_AND_VARIANT/human_hm","./Human_CHROMATIN_Accessibility/human_ca");
+# my @dirs = ("./Human_CHROMATIN_Accessibility/human_ca");
 foreach my $dir(@dirs){
     print "$dir\n";
     opendir (DIR, $dir) or die "can't open the directory!";

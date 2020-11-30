@@ -5,20 +5,21 @@ use warnings;
 use strict; 
 use utf8;
 use List::Util qw/max min/;
-# use Parallel::ForkManager;
+use Parallel::ForkManager;
 my @QTLs =("eQTL");
+#-----------------
+my $pm = Parallel::ForkManager->new(7); ## 设置最大的线程数目
+#-------------------
 foreach my $QTL(@QTLs){
     # my @interval = (18);
     # my @interval = (15);
-    my @interval = (6,7,8,9,12,15);
+    my @interval = (6,7,8,9,12,15,18);
     my @types=("cis_1MB","cis_10MB","trans_1MB","trans_10MB");
-    # my (%hash6,%hash7,%hash8,%hash9,%hash12,%hash15,%hash19);
-    # my $fo1 = "../../output/ALL_${QTL}/segment_hotspot.txt.gz";
-    # open my $O1, "| gzip >$fo1" or die $!;
-    # print $O1 "chr\tstart\tend\n";
     my $cutoff= 0.2;
+
     foreach my $type(@types){
         foreach my $j(@interval){
+            my $pid = $pm->start and next; #开始多线程
             print "$j\t$type\n";
             my $f1 = "../../../output/ALL_${QTL}/cis_trans/NHP/${type}/NHPoisson_emplambda_interval_${j}_cutoff_7.3_${type}_${QTL}.txt.gz";
             # open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n"; 
@@ -30,6 +31,8 @@ foreach my $QTL(@QTLs){
             open my $O2, "| gzip >$fo2" or die $!;
             my $fo3 = "../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_non_hotspot.bed.gz";
             open my $O3, "| gzip >$fo3" or die $!;
+            my $fo4 = "../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_non_hotspot_length_of_segment.bed.gz";
+            open my $O4, "| gzip >$fo4" or die $!;
             print $O1 "chr\tstart\tend\n";
             print $O2 "chr\tstart\tend\n";
             # print $O3 "chr\tstart\tend\n";
@@ -91,9 +94,11 @@ foreach my $QTL(@QTLs){
                                 # print "$count\t2222\n";
                             }
                             else{ #--------和前面的片段不相连,输出前面的片段
-                                print $O1 "$chr\t$starts[0]\t$ends[0]\n";
+                                my $length = $ends[0]-$starts[0];
+                                print $O1 "$chr\t$starts[0]\t$ends[0]\t$length\n";
                                 my $bed_ends = $ends[0]+1;
                                 print $O3 "chr${chr}\t$starts[0]\t$bed_ends\n";
+                                print $O4 "chr${chr}\t$starts[0]\t$bed_ends\t$length\n";
                                 @starts =();
                                 @start_line =();
                                 push @starts,$pos;
@@ -109,6 +114,7 @@ foreach my $QTL(@QTLs){
                 }
                 @results=();
             }
+            $pm->finish;  #多线程结束 
         }
     }
 }

@@ -16,7 +16,7 @@ foreach my $QTL(@QTLs){
     # my $fo1 = "../../output/ALL_${QTL}/segment_hotspot.txt.gz";
     # open my $O1, "| gzip >$fo1" or die $!;
     # print $O1 "chr\tstart\tend\n";
-    my $cutoff= 0.4;
+    my $cutoff= 0.2;
     foreach my $type(@types){
         foreach my $j(@interval){
             print "$j\t$type\n";

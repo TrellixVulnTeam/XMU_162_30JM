@@ -10,6 +10,7 @@ cat 02_all_unique_hic_loops_tran_cis_1_sorted.bed 02_all_unique_hic_loops_tran_c
 gzip 02_all_unique_hic_loops_tran_cis_1_sorted.bed
 gzip 02_all_unique_hic_loops_tran_cis_2_sorted.bed
 gzip 02_all_unique_hic_loops_tran_cis_1_2_sorted.bed
+perl 03_filter_chr1_22.pl #过滤出02_all_unique_hic_loops_tran_cis_1_2_sorted.bed.gz中的chr1_22,得02_all_unique_hic_loops_tran_cis_1_2_sorted_chr1_22.bed.gz
 # zless 02_all_hic_loops_tran_cis_1.bed.gz | head -1 > 02_all_unique_hic_loops_tran_cis_1.bed
 # zless 02_all_hic_loops_tran_cis_1.bed.gz |awk 'NR>1'|sort -u >> 02_all_unique_hic_loops_tran_cis_1.bed
 # gzip 02_all_unique_hic_loops_tran_cis_1.bed
