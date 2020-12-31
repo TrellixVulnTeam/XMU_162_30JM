@@ -34,7 +34,7 @@ for(j in intervals){
 
             # org<-read.table(input_file,header = T,sep = "\t") %>% as.data.frame()
         # org<-read.table("/home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/NHPoisson_emplambda_interval_6cutoff_7.3_all_eQTL.txt.gz",header = T,sep = "\t") %>% as.data.frame()
-        new_type <-str_replace(type,"_","")
+        new_type <-str_replace(type,"_"," ")
         new_type <-capitalize(new_type)
         # title_name<-paste(new_type,": interval ",j,sep = "")
         title_name<- new_type

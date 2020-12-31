@@ -22,7 +22,7 @@ Rscript 02_huan_NHPoisson_par.R
 Rscript 021_histgram_density_interval.R
 
 
-perl 03_filter_hotspot_cis_trans_eQTL.pl # ###@QTLs =("eQTL")在@interval = (6,7,8,9,12,15)时的hotspot(segment),得"../../../output/ALL_${QTL}/cis_trans/hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_hotspot.txt.gz"; 
+perl 03_filter_hotspot_cis_trans_eQTL.pl # ###@QTLs =("eQTL")在@interval = (6,7,8,9,12,15)时的hotspot(segment),得"../../../output/ALL_${QTL}/cis_trans/hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_hotspot.txt.gz"; ../../../output/ALL_${QTL}/cis_trans/hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_hotspot.bed.gz"
 #得point 热点"../../../output/ALL_${QTL}/cis_trans/hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_point_hotspot.txt.gz"
 perl 03_filter_non_hotspot_cis_trans_eQTL.pl ####QTLs =eQTL,在@interval = (6,7,8,9,12,15)时的non hotspot(segment),得"../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_non_hotspot.txt.gz";
         # 得point 非热点"../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_point_non_hotspot.txt.gz"
@@ -31,6 +31,8 @@ perl 03_filter_hotspot_cis_trans_eQTL_interval_18.pl # ###@QTLs =("eQTL")在@int
 perl 03_filter_non_hotspot_cis_trans_eQTL_interval_18.pl ####QTLs =eQTL,在@interval = 18时的non hotspot(segment),得"../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_non_hotspot.txt.gz"
 #及seegent_non_hotspot.bed.gz,得point 非热点"../../../output/ALL_${QTL}/cis_trans/non_hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_point_non_hotspot.txt.gz"
 Rscript 031_histgram_density_length_of_segment.R #plot distribution of segment in hotspot and non-hotspot 
+perl 041_filter_hotspot_segment.pl #将../../../output/ALL_${QTL}/cis_trans/hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_hotspot.bed.gz 长度>=6的片段，得
+#../../../output/ALL_${QTL}/cis_trans/hotspot/interval_${j}_cutoff_7.3_${type}_${QTL}_segment_hotspot_length_more_than6.bed.gz
 #-------------------------------- interval 15
         perl 04_annotation_interval_15.pl ##@types=("cis_1MB","cis_10MB","trans_1MB","trans_10MB")和@groups = ("hotspot","non_hotspot")时,用annotation_bedtools_intersect.sh进行annotation,得$output_dir/RBP_$input_file_base_name
         Rscript 05_merge_trans_cis_eQTL_hotspot_interval15_annotation.R #将/home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/ALL_eQTL/cis_trans/$group/$type/ 下的文件进行annotation,得

@@ -64,8 +64,8 @@ intervals = c(6,7,8,9,12,15,18)
 groups = c("hotspot","non_hotspot")
 types= c("cis_1MB","cis_10MB","trans_1MB","trans_10MB")
 
-fractions = c(1,0.9,0.8,0.7,0.6,5)
-
+fractions = c(1,0.9,0.8,0.7,0.6,0.5)
+# fractions = c(0.5)
 
 
 for (fraction in fractions){

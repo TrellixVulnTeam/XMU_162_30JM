@@ -14,7 +14,8 @@ my @types= ("cis_1MB","cis_10MB","trans_1MB","trans_10MB");
 # my @intervals = (6,7,8,9,12,15,18);
 my @intervals = (18,15,12,9,8,7,6);
 # my @intervals = (18);
-my @fractions = (1,0.9,0.8,0.7,0.6,0.5);
+# my @fractions = (1,0.9,0.8,0.7,0.6,0.5);
+my @fractions = (1);
 # fractions = c(0.5,0.6,0.7,0.8,0.9,1)
 
 
@@ -42,7 +43,7 @@ foreach my $interval(@intervals){
 
             my (%hash1,%hash2,%hash3,%hash4);
             #-------hotspot
-            print "$f1\n";
+            # print "$f1\n";
             my @factors=();
             while(<$I1>)
             {
