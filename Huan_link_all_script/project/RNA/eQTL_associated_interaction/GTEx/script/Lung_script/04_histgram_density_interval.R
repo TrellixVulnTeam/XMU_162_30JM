@@ -18,8 +18,8 @@ p_theme<-theme(panel.grid =element_blank())+theme(panel.grid.major = element_bla
 xQTL = "eQTL"
 cutoff= 7.3
 tissue = "Whole_Blood"
-intervals=c(6,7,8,9,12,15,18)
-
+# intervals=c(6,7,8,9,12,15,18)
+intervals=18
 # types= c("cis_1MB","cis_10MB","trans_1MB","trans_10MB")
 
 library(Hmisc)

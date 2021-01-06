@@ -45,8 +45,11 @@ foreach my $cutoff(@cutoffs){
         }
         else{
             for (my $i=3;$i<5;$i++){
-                unless (abs($f[$i] -0) < 0.000000001){ # hotspot:1
+                if (abs($f[$i] -0) < 0.000000001){ # hotspot:0
                     push @{$hash1{$factors[$i]}},$f[$i];
+                }
+                else{
+                    push @{$hash2{$factors[$i]}},$f[$i];# hotspot:1
                 }
             }
         }
@@ -55,9 +58,20 @@ foreach my $cutoff(@cutoffs){
     my $number_of_hotspot = @hotspots;
     foreach my $factor(sort keys %hash1){
         my @v1s = @{$hash1{$factor}};
-        my $number_of_hotspot_in_factor = @v1s;
-        my $factor_ratio= $number_of_hotspot_in_factor/$number_of_hotspot;
-        print $O1 "$cutoff\t$factor\t$number_of_hotspot_in_factor\t$number_of_hotspot\t$factor_ratio\n";
+        my @n2s=();
+        if (exists $hash2{$factor}){ # hotspot:1 TP
+            my @vs2 = @{$hash2{$factor}};
+            my $number_of_hotspot_in_factor =@vs2;
+            my $factor_ratio= $number_of_hotspot_in_factor/$number_of_hotspot;
+            $factor_ratio=sprintf "%.4f",$factor_ratio;
+            print $O1 "$cutoff\t$factor\t$number_of_hotspot_in_factor\t$number_of_hotspot\t$factor_ratio\n";
+        }
+        else{
+            my $number_of_hotspot_in_factor =0;
+            my $factor_ratio= $number_of_hotspot_in_factor/$number_of_hotspot;
+            $factor_ratio=sprintf "%.4f",$factor_ratio;
+            print $O1 "$cutoff\t$factor\t$number_of_hotspot_in_factor\t$number_of_hotspot\t$factor_ratio\n";
+        }
     }
 
 

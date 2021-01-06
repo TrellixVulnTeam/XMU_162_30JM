@@ -14,6 +14,8 @@ perl 09_prepare_for_roc_chr1_22.pl ##看各种ROC准备数据，利用"~/project
 #-------------------以hotspot 为基准计数
 perl 06_filter_hotspot_for_interval18.pl ###../output/Whole_Blood/Cis_eQTL/NHP/NHPoisson_emplambda_interval_${j}_cutoff_7.3_Whole_Blood.txt.gz 时得不同cutoff下的hotspot(segment),../output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/whole_blood_segment_hotspot_cutoff_${cutoff}.bed.gz
 perl 06_filter_non_hotspot_for_interval18.pl ###../output/Whole_Blood/Cis_eQTL/NHP/NHPoisson_emplambda_interval_${j}_cutoff_7.3_Whole_Blood.txt.gz 时得不同cutoff下的hotspot(segment),../output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/whole_blood_segment_hotspot_cutoff_${cutoff}.bed.gz
+#----------------------
+perl 061_count_hotspot_in_different_cutoff.pl #统计不同cutoff下hotspot的数目/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_18/，得/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Whole_Blood/Cis_eQTL/061_hotspot_in_different_cutoff_interval_18.txt
 perl 07_annotation_hotspot_interval_18_different_cutoff.pl #interval_18 时，对../output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_18/whole_blood_segment_hotspot_cutoff_${cutoff}.bed.gz用annotation_bedtools_intersect_interval18.sh进行annotation,得$output_dir/$factor_$input_file_base_name
 
 Rscript 08_merge_cis_eQTL_hotspot_annotation_interval18.R

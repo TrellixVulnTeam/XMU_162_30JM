@@ -57,5 +57,7 @@ ProcessBedGz <- function(j = NULL){
     print("aaa")
 }
 
-interval <-c(6,7,8,9,12,15,19)
+# interval <-c(6,7,8,9,12,15,19)
+# mclapply(interval, ProcessBedGz, mc.cores = 4)
+interval <-c(6,7,8,9,12,15,18)
 mclapply(interval, ProcessBedGz, mc.cores = 4)

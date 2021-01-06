@@ -30,9 +30,10 @@ foreach my $interval(@intervals){
     my $fo1 = "/home/huanhuan/project/RNA/eQTL_associated_interaction/QTLdb/output/ALL_eQTL/cis_trans/fisher_exact_test/fisher_result/interval_${interval}/07_prepare_fisher_test.txt";
     open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
     # open my $O1, "| gzip >$fo1" or die $!;
-    print $O1 "Fraction\tType\tFactor\tNumber_of_factor_in_hotspot\tNumber_of_non_factor_in_hotspot\tNumber_of_factor_in_non_hotspot\tNumber_of_non_factor_in_non_hotspot\n";    
+     print $O1 "Fraction\tType\tFactor\tNumber_of_factor_in_hotspot\tNumber_of_factor_in_non_hotspot\tNumber_of_non_factor_in_hotspot\tNumber_of_non_factor_in_non_hotspot\n";       
     foreach my $fraction(@fractions){
         foreach my $type(@types){
+            print "$type\n";
             my $f1 = "~/project/RNA/eQTL_associated_interaction/QTLdb/output/ALL_eQTL/cis_trans/fisher_exact_test/annotation_out/hotspot/05_annotation_merge_${type}_interval_${interval}_overlap_fraction_${fraction}.txt.gz";
             # open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n"; 
             open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件
@@ -132,7 +133,8 @@ foreach my $interval(@intervals){
                 else{
                     push @n4s,0;
                 }
-                print $O1 "$fraction\t$type\t$k\t$number1\t$n2s[0]\t$n3s[0]\t$n4s[0]\n";
+                # print $O1 "$fraction\t$type\t$k\t$number1\t$n2s[0]\t$n3s[0]\t$n4s[0]\n";
+                print $O1 "$fraction\t$type\t$k\t$n2s[0]\t$n4s[0]\t$number1\t$n3s[0]\n";
             }
         }
         #----------------------
