@@ -17,15 +17,15 @@ for (my $i=0.05;$i<0.96;$i=$i+0.05){ #对文件进行处理，把所有未定义
 }
 push @cutoffs,0.99;
 # my @types = ("factor","non_factor");
-my @factors = ("promoter","enhancer","TFBS","CHROMATIN_Accessibility","HISTONE_modification","CTCF");
+my @factors = ("promoter","enhancer");
 # my @groups = ("hotspot","non_hotspot");
 my $fo1 = "/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Whole_Blood/Cis_eQTL/ROC/interval_18/ALL/split_non_factor/08_prepare_number_ROC_factor_count.txt";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 print $O1 "Factor\tCutoff\tNumber_of_factor_in_hotspot_TP\tNumber_of_factor_in_non_hotspot_FN\tNumber_of_non_factor_in_hotspot_FP\tNumber_of_non_factor_in_non_hotspot_TN\tTPR\tFPR\n";
 # TP\t$FN\t$FP\t$TN
 foreach my $factor(@factors){
-    my $command_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/Whole_blood/${factor}.bed.gz | wc -l" ;
-    my $command_non_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/Whole_blood/non_${factor}_split.bed.gz | wc -l" ;
+    my $command_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/${factor}.bed.gz | wc -l" ;
+    my $command_non_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/non_${factor}_split.bed.gz | wc -l" ;
 
     my $factor_line_count = wc($command_factor);
     my $non_factor_line_count = wc($command_non_factor);
@@ -43,7 +43,7 @@ foreach my $factor(@factors){
         print "$non_factor_hotspot_size\t$non_factor_hotspot_file\n";
         my @factor_hotspot_line;
         my @non_factor_hotspot_line;
-        #-------------------------------factor_hotspot_size
+        #------------------------------ factor_hotspot_size
         if ($factor_hotspot_size >20){ #空compressed file is 20
             my $command_factor_hotspot = "zless $factor_hotspot_file |cut -f4,5,6| sort -u | wc -l" ;
             my $factor_hotspot_line_count = wc($command_factor_hotspot);

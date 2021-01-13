@@ -18,16 +18,16 @@ p_theme<-theme(panel.grid =element_blank())+theme(panel.grid.major = element_bla
 
 xQTL = "eQTL"
 cutoff= 7.3
-tissue = "Whole_Blood"
-setwd("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/figure/Whole_Blood/chr/")
-
+tissue = "Lung"
+setwd(paste0("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/figure/",tissue,"/chr/"))
+# setwd(paste0("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/",tissue,"/Cis_eQTL/NHP/"))
 
 # for (j in interval){
 ProcessBedGz <- function(j = NULL){
     figure_list<-list()
     Density_figure_list <-list()
     i=1
-    input_file <-paste("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Whole_Blood/Cis_eQTL/NHP/NHPoisson_emplambda_interval_",j,"_cutoff_",cutoff,"_",tissue,".txt.gz", sep = "")
+    input_file <-paste("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/",tissue,"/Cis_eQTL/NHP/NHPoisson_emplambda_interval_",j,"_cutoff_",cutoff,"_",tissue,".txt.gz", sep = "")
     org<-read.table(input_file,header = T,sep = "\t") %>% as.data.frame()
     # org<-read.table("/home/huanhuan/project/RNA/eQTL_associated_interaction/QTLbase/output/NHPoisson_emplambda_interval_6cutoff_7.3_all_eQTL.txt.gz",header = T,sep = "\t") %>% as.data.frame()
     # for(number in c(1:22)){
@@ -59,5 +59,5 @@ ProcessBedGz <- function(j = NULL){
 
 # interval <-c(6,7,8,9,12,15,19)
 # mclapply(interval, ProcessBedGz, mc.cores = 4)
-interval <-c(6,7,8,9,12,15,18)
+interval <-c(18)
 mclapply(interval, ProcessBedGz, mc.cores = 4)

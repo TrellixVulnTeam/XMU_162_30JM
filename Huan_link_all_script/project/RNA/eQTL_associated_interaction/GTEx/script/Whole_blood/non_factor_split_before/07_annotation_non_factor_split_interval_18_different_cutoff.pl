@@ -18,7 +18,7 @@ for (my $i=0.05;$i<0.96;$i=$i+0.05){ #对文件进行处理，把所有未定义
 }
 push @cutoffs,0.99;
 my @groups = ("hotspot");
-my @types = ("non_factor_split","factor");
+my @types = ("non_factor_split");
 
 my $pm = Parallel::ForkManager->new(10); ## 设置最大的线程数目
 foreach my $type(@types){

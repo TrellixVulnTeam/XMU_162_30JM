@@ -11,15 +11,27 @@ library(parallel)
 
 setwd("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Whole_Blood/Cis_eQTL/ROC/interval_18/ALL/split_non_factor/")
 org<-read.table("08_prepare_number_ROC_factor_count.txt",header = T,sep = "\t") %>% as.data.frame()
-enhancer <-dplyr::filter(org,Factor == "enhancer")
-promoter <-dplyr::filter(org,Factor == "promoter")
-pdf("enhancer_factor.pdf")
-p <-ggplot(enhancer,mapping = aes(x = FPR, y = TPR,colour = Cutoff)) + geom_point(size = 3)+ggtitle("Enhancer")+theme(plot.title = element_text(hjust = 0.5))
-print(p)
-dev.off()
+library(Hmisc)
+factors <- c("promoter","enhancer","TFBS","CHROMATIN_Accessibility","HISTONE_modification")
+for(factor in factors){
+    factor_org <-dplyr::filter(org,Factor == factor)
+    factor <-capitalize(factor) 
+    pdf(paste0(factor,"_factor.pdf"))
+    p <-ggplot(factor_org,mapping = aes(x = FPR, y = TPR,colour = Cutoff)) + geom_point(size = 3)+ggtitle(factor)+theme(plot.title = element_text(hjust = 0.5))
+    print(p)
+    dev.off()
+}
 
-pdf("promoter_factor.pdf")
-p <-ggplot(promoter,mapping = aes(x = FPR, y = TPR,colour = Cutoff)) + geom_point(size = 3)+ggtitle("Promoter")+theme(plot.title = element_text(hjust = 0.5))
-print(p)
-dev.off()
 
+
+# enhancer <-dplyr::filter(org,Factor == "enhancer")
+# promoter <-dplyr::filter(org,Factor == "promoter")
+# pdf("enhancer_factor.pdf")
+# p <-ggplot(enhancer,mapping = aes(x = FPR, y = TPR,colour = Cutoff)) + geom_point(size = 3)+ggtitle("Enhancer")+theme(plot.title = element_text(hjust = 0.5))
+# print(p)
+# dev.off()
+
+# pdf("promoter_factor.pdf")
+# p <-ggplot(promoter,mapping = aes(x = FPR, y = TPR,colour = Cutoff)) + geom_point(size = 3)+ggtitle("Promoter")+theme(plot.title = element_text(hjust = 0.5))
+# print(p)
+# dev.off()

@@ -94,7 +94,7 @@ foreach my $file(@files){
             }
             else{
                 unless($Cell_type =~ /\bNone\b/){
-                    if ($Cell_type =~ /cancer|oma|Patient/i){
+                    if ($Cell_type =~ /cancer|oma|Patient|tumor/i){
                         unless(exists $hash4{$Cell_line}){
                             $hash4{$Cell_line}=1;
                             print $O4 "$Cell_line\n";
@@ -118,6 +118,10 @@ foreach my $file(@files){
                         }
                     }
                 }
+
+                # if($Cell_type =~ /\bNone\b/){
+                #     print "$Cell_type\n";
+                # }
             }
         }
     }

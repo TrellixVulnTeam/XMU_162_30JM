@@ -3,4 +3,3 @@ perl 08_count_factor_and_non_factor_annotation_interval18_different_cutoff.pl #æ
 
 Rscript 10_plot_point_factor_non_factor.R
 Rscript 10_fisher_exact_test_factor_and_non_factor.R
-Rscript 11_F-score.R
