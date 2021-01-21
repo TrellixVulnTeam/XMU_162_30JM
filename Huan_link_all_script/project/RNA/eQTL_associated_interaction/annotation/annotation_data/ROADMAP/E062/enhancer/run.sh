@@ -1,3 +1,5 @@
+wget -c https://egg2.wustl.edu/roadmap/data/byFileType/peaks/consolidated/narrowPeak/E062-H3K27ac.narrowPeak.gz
+wget -c https://egg2.wustl.edu/roadmap/data/byFileType/peaks/consolidated/narrowPeak/E062-H3K4me1.narrowPeak.gz
 perl 01_normal.pl #对"E062-H3K27ac.narrowPeak.gz","E062-H3K4me1.narrowPeak.gz" 进行normal和排序得${fo1}sorted.gz
 # bedtools intersect -F 0.1 -a 01_normal_E062-H3K4me1.narrowPeaksorted.gz -b 01_normal_E062-H3K27ac.narrowPeaksorted.gz -wo |gzip  > 01_normal_E062-H3K4me1_H3K27ac.narrowPeaksorted.gz
 bedtools intersect -F 0.1 -a 01_normal_E062-H3K4me1.narrowPeaksorted.gz -b 01_normal_E062-H3K27ac.narrowPeaksorted.gz  |sort -k1,1 -k2,2n | gzip  > 01_normal_E062-H3K4me1_H3K27ac.narrowPeaksorted_overlap.gz
