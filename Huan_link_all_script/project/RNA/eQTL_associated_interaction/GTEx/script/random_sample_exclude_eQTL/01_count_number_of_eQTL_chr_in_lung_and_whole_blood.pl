@@ -32,8 +32,11 @@ foreach my $tissue (@tissues){
             my $variant_id = $f[0];
             my $chr = $f[1];
             my $pos = $f[2];
-            if(exists $hash1{$chr}){
-                push @{$hash2{$chr}},$pos;
+            my $Pvalue =$f[-6];
+            if($Pvalue <5e-8){ #----significant qtl
+                if(exists $hash1{$chr}){
+                    push @{$hash2{$chr}},$pos;
+                }
             }
 
         }
@@ -42,7 +45,7 @@ foreach my $tissue (@tissues){
     foreach my $k(sort keys %hash2){
         my @poss = @{$hash2{$k}};
         my %hash; 
-        @poss = grep { ++$hash{$_} < 2} @poss;
+        @poss = grep { ++$hash{$_}< 2 } @poss;
         my $number = @poss;
         print $O1 "$tissue\t$k\t$number\n";
     }

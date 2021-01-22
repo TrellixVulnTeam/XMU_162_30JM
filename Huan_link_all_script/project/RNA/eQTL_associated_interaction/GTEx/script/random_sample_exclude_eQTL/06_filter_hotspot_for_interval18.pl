@@ -7,7 +7,7 @@ use List::Util qw/max min/;
 use Parallel::ForkManager;
 my @cutoffs;
 push @cutoffs,0.01;
-for (my $i=0.05;$i<0.7;$i=$i+0.05){ #对文件进行处理，把所有未定义的空格等都替换成NONE
+for (my $i=0.05;$i<0.7;$i=$i+0.05){ 
     push @cutoffs,$i;
     # print "$i\n";
 }

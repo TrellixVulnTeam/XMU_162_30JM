@@ -32,7 +32,7 @@ for(tissue in tissues){
         i=i+1
     }
     #------------------
-    pdf(paste0("ROC_cis_eQTL_in_",tissue,".pdf"),height = 7,width = 12)
+    pdf(paste0("ROC_cis_eQTL_in_",tissue,".pdf"),height = 7,width = 10)
     tissue <-str_replace(tissue,"_"," ")
     top_title <-paste0("Random select sum Cis eQTL in ",tissue)
     p1<-marrangeGrob(figure_list,nrow=2,ncol=3,top = top_title)  

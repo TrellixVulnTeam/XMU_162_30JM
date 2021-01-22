@@ -32,8 +32,11 @@ foreach my $tissue (@tissues){
             my $variant_id = $f[0];
             my $chr = $f[1];
             my $pos = $f[2];
-            if(exists $hash1{$chr}){
-                push @{$hash2{$chr}},$pos;
+            my $Pvalue =$f[-6];
+            if($Pvalue <5e-8){ #----significant qtl
+                if(exists $hash1{$chr}){
+                    push @{$hash2{$chr}},$pos;
+                }
             }
 
         }
