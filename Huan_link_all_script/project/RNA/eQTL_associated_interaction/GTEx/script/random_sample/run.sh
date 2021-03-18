@@ -8,3 +8,7 @@ Rscript 04_histgram_density_interval.R
 #-------------------以hotspot 为基准计数
 perl 06_filter_hotspot_for_interval18.pl ###"/share/data0/QTLbase/huan/GTEx/random_select/${tissue}/random_select_result/${tissue}_random_select_result_${number}.txt.gz" 时得不同cutoff下的hotspot(segment),得"/share/data0/QTLbase/huan/GTEx/random_select/${tissue}/hotspot/${number}/interval_18/${tissue}_segment_hotspot_cutoff_${cutoff}.bed.gz"
 Rscript 061_histgram_plot_the_length_of_hotspot.R 
+
+
+perl 20_count_random_hit_eQTL_ratio.pl # 统计"$output_dir/${tissue}_random_select_result_${i}.txt.gz" 中，hit住eQTL的数目，得count_random_hit_eQTL_ratio.txt
+Rscript 21_count_segment_length.R

@@ -111,22 +111,4 @@ foreach my $dir(@dirs){
             }
         }
     }
-
-
-
-
-
 }
-#     my $f2 = $file;
-#     # my $f2 = "./Human_CHROMATIN_Accessibility/human_ca_full_QC.txt";
-    
-#     # open( my $I2 ,"gzip -dc $f2|") or die ("can not open input file '$f2' \n"); #读压缩文件
-
-
-
-
-
-
-#     # $pm->finish;  #多线程结束
-
-# # }

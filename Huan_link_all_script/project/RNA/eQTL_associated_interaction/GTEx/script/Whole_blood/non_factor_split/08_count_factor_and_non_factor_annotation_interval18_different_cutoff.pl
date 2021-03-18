@@ -24,8 +24,8 @@ open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 print $O1 "Factor\tCutoff\tNumber_of_factor_in_hotspot_TP\tNumber_of_factor_in_non_hotspot_FN\tNumber_of_non_factor_in_hotspot_FP\tNumber_of_non_factor_in_non_hotspot_TN\tTPR\tFPR\n";
 # TP\t$FN\t$FP\t$TN
 foreach my $factor(@factors){
-    my $command_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/Whole_blood/${factor}.bed.gz | wc -l" ;
-    my $command_non_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/Whole_blood/non_${factor}_split.bed.gz | wc -l" ;
+    my $command_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/Whole_Blood/${factor}_union.bed.gz | wc -l" ;
+    my $command_non_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/Whole_Blood/non_${factor}_split_union.bed.gz | wc -l" ;
 
     my $factor_line_count = wc($command_factor);
     my $non_factor_line_count = wc($command_non_factor);

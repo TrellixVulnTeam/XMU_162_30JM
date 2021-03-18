@@ -14,6 +14,8 @@ bedtools makewindows -b  01_enhancer_complement.bed.gz -w 334 | gzip >split_enha
 cp 01_normal_E062-H3K4me1_H3K27ac.narrowPeaksorted_overlap.gz /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/enhancer.bed.gz
 cp 01_enhancer_complement.bed.gz /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/non_enhancer.bed.gz
 ln split_enhancer_complement.bed.gz /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/non_enhancer_split.bed.gz
+# ln 01_normal_E062-H3K4me1_H3K27ac.narrowPeaksorted_overlap.gz /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/enhancer_union.bed.gz
+# ln split_enhancer_complement.bed.gz  /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/non_enhancer_split_union.bed.gz
 
 # cd split_complement_chr1_22_files
 # zless ../split_enhancer_complement_chr1_22.bed.gz | split -l 1000000 -a 5

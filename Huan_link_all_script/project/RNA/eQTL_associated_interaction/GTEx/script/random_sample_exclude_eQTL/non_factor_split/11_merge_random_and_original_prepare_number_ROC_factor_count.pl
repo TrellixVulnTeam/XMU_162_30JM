@@ -15,7 +15,7 @@ use Parallel::ForkManager;
 my $fo1 = "/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/random_select_exclude_eQTL/Cis_eQTL/ROC/interval_18/ALL/split_non_factor/11_merge_random_and_original_prepare_number_ROC_factor_count.txt";
 open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 
-print $O1 "Tissue\tRandom_number\tFactor\tCutoff\trandom_sum_Number_of_factor_in_hotspot_TP\trandom_sum_Number_of_factor_in_non_hotspot_FN\trandom_sum_Number_of_non_factor_in_hotspot_FP\trandom_sum_Number_of_non_factor_in_non_hotspot_TN\trandom_sum_TPR\trandom_sum_FPR\ttrue_Number_of_factor_in_hotspot_TP\ttrue_Number_of_factor_in_non_hotspot_FN\ttrue_Number_of_non_factor_in_hotspot_FP\ttrue_Number_of_non_factor_in_non_hotspot_TN\ttruem_TPR\ttrue_FPR\n";
+print $O1 "Tissue\tRandom_number\tFactor\tCutoff\trandom_sum_Number_of_factor_in_hotspot_TP\trandom_sum_Number_of_factor_in_non_hotspot_FN\trandom_sum_Number_of_non_factor_in_hotspot_FP\trandom_sum_Number_of_non_factor_in_non_hotspot_TN\trandom_sum_TPR\trandom_sum_FPR\ttrue_Number_of_factor_in_hotspot_TP\ttrue_Number_of_factor_in_non_hotspot_FN\ttrue_Number_of_non_factor_in_hotspot_FP\ttrue_Number_of_non_factor_in_non_hotspot_TN\ttrue_TPR\ttrue_FPR\tTPR_percentage_true_greater_than_random\n";
 
 
 my $f1 ="/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Lung/Cis_eQTL/ROC/interval_18/ALL/split_non_factor/08_prepare_number_ROC_factor_count.txt";
@@ -87,10 +87,15 @@ while(<$I3>){
         my $Number_of_factor_in_non_hotspot_FN =$f[5];
         my $Number_of_non_factor_in_hotspot_FP =$f[6];
         my $Number_of_non_factor_in_non_hotspot_TN =$f[7];
+        my $TPR = $f[-2];
         my $k = "$Tissue\t$Factor\t$Cutoff";
         if (exists $hash1{$k}){
             my $v= $hash1{$k};
-            print $O1 "$_\t$v\n";
+            my @t = split/\t/,$v;
+            my $true_TPR = $t[-2];
+            my $add_ratio = ($true_TPR-$TPR)/$true_TPR *100;
+            my $var = sprintf "%.2f",$add_ratio;
+            print $O1 "$_\t$v\t${var}%\n";
         }
     }
 }

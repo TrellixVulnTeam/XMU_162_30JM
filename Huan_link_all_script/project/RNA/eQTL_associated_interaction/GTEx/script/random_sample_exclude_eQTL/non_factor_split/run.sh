@@ -19,3 +19,10 @@ perl 12_merge_random_and_original_fisher_exact_test.pl  #将#/home/huanhuan/proj
 # /home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Lung/Cis_eQTL/ROC/interval_18/ALL/split_non_factor/10_fisher_exact_test_result_factor.txt 
 # /home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Whole_Blood/Cis_eQTL/ROC/interval_18/ALL/split_non_factor/10_fisher_exact_test_result_factor.txt merge 在一起
 #得/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/random_sample_exclude_eQTL/Cis_eQTL/ROC/interval_18/ALL/split_non_factor/11_merge_random_and_original_fisher_exact_test.txt
+
+#---------------------更细的cutoff
+perl  07_annotation_non_factor_split_interval_18_different_cutoff_re.pl
+perl 08_count_factor_and_non_factor_annotation_interval18_different_cutoff_re.pl
+perl 081_sum_random_result_re.pl
+
+perl 11_merge_random_and_original_prepare_number_ROC_factor_count_re.pl

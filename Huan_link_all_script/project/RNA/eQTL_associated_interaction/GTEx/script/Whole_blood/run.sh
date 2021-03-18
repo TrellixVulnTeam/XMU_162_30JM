@@ -23,3 +23,28 @@ Rscript 08_merge_cis_eQTL_hotspot_annotation_interval18.R
 
 
 perl 09_prepare_for_roc.pl ##看各种ROC准备数据，利用"~/project/RNA/eQTL_associated_interaction/GTEx/output/Whole_Blood/Cis_eQTL/annotation_out/interval_18/ALL/hotspot/08_annotation_merge_interval_18_overla
+
+
+Rscript 10_fisher_exact_test.R
+Rscript 10_fisher_exact_test_factor_and_non_factor.R
+Rscript 10_plot_point.R
+Rscript 10_plot_point_factor_non_factor.R
+
+#--------------更细的cutoff
+perl 06_filter_hotspot_for_interval18_re.pl
+perl 061_count_hotspot_in_different_cutoff_re.pl
+062_count_the_length_of_hotspot_re.R
+
+
+perl 20_count_hotspot_in_factor.pl #根据"/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/Cis_eQTL/061_hotspot_in_different_cutoff_interval_18_re.txt记录的hotspot数目，和annotation信息得每个cutoff下hit住factor的hotspot的比例文件"/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/Cis_eQTL/20_count_hotspot_in_factor.txt.gz"; 得每个cutoff下被每种factor hit住hotspot的比例文件"/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/Cis_eQTL/20_count_hotspot_in_per_factor_ratio.txt.gz";得每个cutoff下被每种factor hit住hotspot的文件"/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/Cis_eQTL/20_count_hotspot_in_factor_pos.txt.gz"
+
+perl 21_NHP_background_intersect_hotspot.pl #将"/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/${tissue}_cis_eQTL_1kg_Completion.txt.gz” 转换为bed得 "/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/${tissue}_cis_eQTL_1kg_Completion.bed.gz,排序得$sort_fo1，用$sort_fo1 和"/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/${tissue}_cis_eQTL_1kg_Completion.bed.gz bedtools intersect得/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/Cis_eQTL/hotspot_cis_eQTL_overlap_SNP/${tissue}_segment_hotspot_cutoff_${cutoff}_SNP.bed.gz
+
+perl 22_count_eqtl_in_hotspot_ratio.pl ##统计/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/Cis_eQTL/hotspot_cis_eQTL_overlap_SNP/${tissue}_segment_hotspot_cutoff_${cutoff}_SNP.bed.gz中eQTL在SNP中的比例得/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/${tissue}_cis_eQTL_in_hotspot_ratio.gz
+
+
+
+#--------------------
+perl 30_annotation_chromtain_states.pl # #interval_18 时，对../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18/whole_blood_segment_${group}_cutoff_${cutoff}.bed.gz用annotation_chromatin_states_interval18.sh进行annotation,得$output_dir/$factor_$input_file_base_name
+perl 31_filter_annotation_state.pl ##因为每个片段会被多个chrom state 注释，根据对hotspot的覆盖比例，选出覆盖比例最高的state, interval_18 时，对"../../output/${tissue}/Cis_eQTL/annotation/interval_18/ALL/${group}/${cutoff}/${state}_state_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz"进行过滤，得$dir/filter_$name
+perl 31_1_count_chrom_state.pl ###对"$dir/filter_$name"中的chromatin state 进行统计，得"../../../output/${tissue}/Cis_eQTL/enrichment/interval_18/ALL/${type}_${state}_state_count_${tissue}_cutoff_${cutoff}.txt"

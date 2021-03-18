@@ -34,8 +34,8 @@ print $O1 "Tissue\tRandom_number\tFactor\tCutoff\tNumber_of_factor_in_hotspot_TP
 # TP\t$FN\t$FP\t$TN
 foreach my $tissue(@tissues){
     foreach my $factor(@factors){
-        my $command_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/${tissue}/${factor}.bed.gz | wc -l" ;
-        my $command_non_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/${tissue}/non_${factor}_split.bed.gz | wc -l" ;
+        my $command_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/${tissue}/${factor}_union.bed.gz | wc -l" ;
+        my $command_non_factor = "zless /home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/${tissue}/non_${factor}_split_union.bed.gz | wc -l" ;
 
         my $factor_line_count = wc($command_factor);
         my $non_factor_line_count = wc($command_non_factor);

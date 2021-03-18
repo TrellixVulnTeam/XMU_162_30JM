@@ -19,3 +19,15 @@ bedtools makewindows -b  05_CTCF_complement.bed.gz -w 151 | gzip >split_CTCF_com
 ln 05_normal_cell_line_ctcf_sort.bed.gz "/home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/Whole_blood/CTCF.bed.gz"
 
 ln split_CTCF_complement.bed.gz "/home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/used_refer/Whole_blood/non_CTCF_split.bed.gz"
+
+
+
+#---------------------------------
+
+bedtools merge -i 05_normal_cell_line_ctcf_sort.bed.gz | gzip > 05_normal_cell_line_ctcf_sort_union.bed.gz
+
+
+Rscript 06_plot_length_distribution_of_CTCF_mean_union.R
+
+bedtools complement -i 05_normal_cell_line_ctcf_sort_union.bed.gz -g /home/huanhuan/ref_data/UCSC/hg19.chrom1_22_sizes_sorted.txt | gzip> 05_CTCF_complement_union.bed.gz
+bedtools makewindows -b  05_CTCF_complement_union.bed.gz -w 222 | gzip >split_CTCF_complement_union.bed.gz
