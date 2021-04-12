@@ -45,6 +45,19 @@ perl 22_count_eqtl_in_hotspot_ratio.pl ##统计/home/huanhuan/project/RNA/eQTL_a
 
 
 #--------------------
-perl 30_annotation_chromtain_states.pl # #interval_18 时，对../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18/whole_blood_segment_${group}_cutoff_${cutoff}.bed.gz用annotation_chromatin_states_interval18.sh进行annotation,得$output_dir/$factor_$input_file_base_name
+perl 30_annotation_chromtain_states_and_histone_marker.pl # #interval_18 时，对../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18/whole_blood_segment_${group}_cutoff_${cutoff}.bed.gz用annotation_chromatin_states_interval18.sh进行annotation,得$output_dir/$factor_$input_file_base_name  #包括histone marker
 perl 31_filter_annotation_state.pl ##因为每个片段会被多个chrom state 注释，根据对hotspot的覆盖比例，选出覆盖比例最高的state, interval_18 时，对"../../output/${tissue}/Cis_eQTL/annotation/interval_18/ALL/${group}/${cutoff}/${state}_state_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz"进行过滤，得$dir/filter_$name
 perl 31_1_count_chrom_state.pl ###对"$dir/filter_$name"中的chromatin state 进行统计，得"../../../output/${tissue}/Cis_eQTL/enrichment/interval_18/ALL/${type}_${state}_state_count_${tissue}_cutoff_${cutoff}.txt"
+
+perl 32_count_anno_histone_mark.pl #对../../output/${tissue}/Cis_eQTL/annotation/interval_18/ALL/${group}/${cutoff}*的marker进行count,得$out_dir/${group}_histone_marker.txt.gz
+
+
+
+
+#-----------
+perl 33_calculate_jaccard_index_histone_mark.pl #对 $input_dir/${mark}_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz 计算 jaccard index得$out_dir/${group}_cutoff_${cutoff}_histone_marker_jaccard_index.txt.gz
+
+
+
+
+

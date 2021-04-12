@@ -16,7 +16,7 @@ j=18
 
 library(Hmisc)
 
-cutoffs <-seq(0.1,0.3,0.01)
+cutoffs <-0.176
 # cutoffs <-c(0.01,cutoffs)
 # nums<-c(1:10)
 tissue <-"Whole_Blood"
@@ -24,8 +24,7 @@ tissue <-"Whole_Blood"
 
 
 
-figure_list <-list ()
-i=1
+
 for(cutoff in cutoffs){
     file_name<-paste0("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/",tissue,"/Cis_eQTL/hotspot_cis_eQTL/interval_18/whole_blood_segment_hotspot_cutoff_",cutoff,".bed.gz")
     a<-file.info(file_name)$size #the file size
@@ -35,11 +34,41 @@ for(cutoff in cutoffs){
         colnames(org)[2] <-"start"
         colnames(org)[3] <-"end"
         org$hotspot_length <-org$end - org$start
+        #----------
+        aa <-table(org$hotspot_length)%>%data.frame()
+
+        #--------
+        breaks1 = seq(0,200000,10000)
+        title_name <-paste0("Cutoff ",cutoff)
+        p <-ggplot(aa, aes(x =Var1,y=Freq)) +geom_bar(stat="identity")+xlab("Length of segment") + ylab("Count")+p_theme+ggtitle(title_name)+
+        #scale_x_continuous(breaks=breaks1)+
+        theme(plot.title = element_text(hjust = 0.5),axis.text.x=element_text(angle=90)))
+
+        setwd(paste0("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/figure/",tissue))
+        pdf(paste0("bar_plot_length_of_hotspot_cutoff_0.176_7.3_cis_eQTL_in_",tissue,".pdf"))
+        print(p)
+        dev.off()
+
+
+
+
 
         title_name <-paste0("Cutoff ",cutoff)
-        figure_list[[i]] <-ggplot(org, aes(x =hotspot_length)) +geom_histogram(position="identity")+xlab("Length of segment") + ylab("Count")+p_theme+ggtitle(title_name)+
+        p <-ggplot(org, aes(x =hotspot_length)) +geom_bar(position="identity")+xlab("Length of segment") + ylab("Count")+p_theme+ggtitle(title_name)+
         theme(plot.title = element_text(hjust = 0.5))
-        i = i+1
+        setwd(paste0("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/figure/",tissue))
+        pdf(paste0("bar_plot_length_of_hotspot_0.176_cutoff_7.3_cis_eQTL_in_",tissue,".pdf"))
+        print(p)
+        dev.off()
+        org_filter <-filter(org,hotspot_length<=5000)
+        nrow(org_filter)
+        p2 <-ggplot(org_filter, aes(x =hotspot_length)) +geom_bar(position="identity")+xlab("Length of segment") + ylab("Count")+p_theme+ggtitle(title_name)+theme(plot.title = element_text(hjust = 0.5))
+                
+        pdf(paste0("bar_plot_length_of_hotspot_cutoff_0.176_7.3_less_than5000_cis_eQTL_in_",tissue,".pdf"))
+        print(p2)
+        dev.off()
+
+
     }
 }
 
@@ -48,7 +77,7 @@ top_title <-paste0("Length of Hotspot ",str_tissue)
 
 
 setwd(paste0("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/figure/",tissue))
-pdf(paste0("histogram_plot_length_of_hotspot_cutoff_7.3_cis_eQTL_in_",tissue,"_re.pdf"))
+pdf(paste0("histogram_plot_length_of_hotspot_0.176_cutoff_7.3_cis_eQTL_in_",tissue,"_re.pdf"))
 p1<-marrangeGrob(figure_list,nrow=3,ncol=3,top = top_title)  
 print(p1)
 dev.off()

@@ -9,6 +9,15 @@ perl 05_filter_normal_cell_line.pl #将04_all_cell_line_info.txt 中对应的nor
 
 zless 05_normal_cell_line_ctcf.bed.gz | sort -k1,1 -k2,2n |gzip >05_normal_cell_line_ctcf_sort.bed.gz
 
+#-------------------------
+bedtools merge -i 05_normal_cell_line_ctcf_sort.bed.gz | gzip > 05_normal_cell_line_ctcf_sort_union.bed.gz
+
+
+#------------------------------------------------------unused
+
+
+
+
 bedtools complement -i 05_normal_cell_line_ctcf_sort.bed.gz -g /home/huanhuan/ref_data/UCSC/hg19.chrom1_22_sizes_sorted.txt | gzip> 05_CTCF_complement.bed.gz
 
 Rscript 06_plot_length_distribution_of_CTCF_mean.R #为01_normal_E062-H3K4me1_H3K27ac.narrowPeaksorted_overlap.gz 画长度分布图，得长度文件 02_enhancer_length.txt 和求均数及中位数得02_enhancer_length_statistics.txt

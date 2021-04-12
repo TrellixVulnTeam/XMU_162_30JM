@@ -52,7 +52,7 @@ foreach my $type(@types){
     }
 
     my $genome="/home/huanhuan/ref_data/UCSC/hg19.chrom1_22.sizes";
-    for (my $i=1;$i<1001;$i++){
+    for (my $i=1;$i<10001;$i++){
     # for (my $i=500;$i<1001;$i++){
         my $pid = $pm->start and next; #开始多线程
         my $input_file_base_name = "${i}_resemble_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz";

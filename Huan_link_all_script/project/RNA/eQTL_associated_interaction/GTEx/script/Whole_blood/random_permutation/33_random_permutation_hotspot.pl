@@ -26,7 +26,7 @@ while(<$I1>)
 }
 my $length_hotspot = @hotspot;
 
-for (my $i=1;$i<1001;$i++){
+for (my $i=1;$i<10001;$i++){
     my @hotspot_and_resemble=@hotspot;
 
     my $f2 = "../../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18_random/original_random/${cutoff}/${i}_resemble_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz"; #resemble

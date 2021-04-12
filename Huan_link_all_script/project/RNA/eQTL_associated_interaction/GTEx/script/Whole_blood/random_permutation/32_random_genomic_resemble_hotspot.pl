@@ -25,7 +25,7 @@ else{
 }
 
 my $genome="/home/huanhuan/ref_data/UCSC/hg19.chrom1_22.sizes";
-for (my $i=1;$i<1001;$i++){
+for (my $i=1;$i<10001;$i++){
     my $out_file = "$output_dir/${i}_resemble_${input_file_base_name}";
     #generate random file 
     my $command1 = "bedtools shuffle -i $input_file -g $genome -excl $input_file -chrom | gzip >$out_file"; 
