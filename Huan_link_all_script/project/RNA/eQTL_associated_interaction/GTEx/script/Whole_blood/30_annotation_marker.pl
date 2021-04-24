@@ -75,7 +75,7 @@ my $command = "bash annotation_chromatin_states_interval18.sh";
 system $command;
 print "$group\t$cutoff\n";
 
-
+# print "$input_file\n";
 
 
 # my $pm = Parallel::ForkManager->new(10); ## 设置最大的线程数目

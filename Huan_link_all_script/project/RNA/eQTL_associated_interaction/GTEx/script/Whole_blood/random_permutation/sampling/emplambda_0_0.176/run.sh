@@ -6,7 +6,7 @@ perl 01_filter_emplambda_0_0.176_segment_fact.pl ###过滤出../../../../../outp
 
 perl 02_random_genomic_resemble_hotspot_fact.pl  #产生10000个与../../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18/whole_blood_segment_${group}_cutoff_${cutoff}.bed.gz相同的resemble hotspot,"$output_dir/${i}_resemble_${input_file_base_name}",
 #whole_blood_segment_hotspot_cutoff_0_0.176.bed.gz
-perl 03_annotation_histone_marker.pl #对10000个../../../../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18_random/background_original_random/${cutoff}/$cutoff2/*进行histone marker的注释，得/share/data0/QTLbase/huan/GTEx/${tissue}/Cis_eQTL/interval_18/annotation/ALL/${group}/${cutoff}/background_original_random/$cutoff2/*
+perl 03_annotation_marker.pl #对10000个../../../../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18_random/background_original_random/${cutoff}/$cutoff2/*进行histone marker的注释，得/share/data0/QTLbase/huan/GTEx/${tissue}/Cis_eQTL/interval_18/annotation/ALL/${group}/${cutoff}/background_original_random/$cutoff2/*
 perl 04_count_annotation_marker.pl #对/share/data0/QTLbase/huan/GTEx/${tissue}/Cis_eQTL/interval_18/annotation/ALL/${group}/${cutoff}/$type/$cutoff2/*的marker进行count,得"$out_dir/${type}_${cutoff2}_histone_marker.txt.gz";
 
 perl 05_calculate_jaccard_index.pl #对$input_dir/${mark}_${i}_resemble_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz 进行jaccard index 进行计算,得的marker进行计算,得"$out_dir/${cutoff2}_jaccard_index_histone_marker.txt.gz";

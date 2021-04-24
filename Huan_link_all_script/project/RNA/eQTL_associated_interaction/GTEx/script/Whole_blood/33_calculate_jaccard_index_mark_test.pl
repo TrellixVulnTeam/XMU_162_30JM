@@ -16,16 +16,18 @@ my $tissue = "Whole_Blood";
 
 my $input_dir = "../../output/${tissue}/Cis_eQTL/annotation/interval_18/ALL/${group}/${cutoff}";
 
-my @markers = ("H3K27ac","H3K27me3","H3K36me3","H3K4me1","H3K4me3","H3K9ac","H3K9me3");
+# my @markers = ("H3K27ac","H3K27me3","H3K36me3","H3K4me1","H3K4me3","H3K9ac","H3K9me3");
+# my @markers = ("H3K27ac","H3K27me3","H3K36me3","H3K4me1","H3K4me3","H3K9ac","H3K9me3","CHROMATIN_Accessibility","TFBS","CTCF");
+my @markers = ("H3K27ac");
 my $out_dir=  "../../output/${tissue}/Cis_eQTL/enrichment/interval_18/ALL";
 
 
 
-my $fo1 = "$out_dir/${group}_cutoff_${cutoff}_histone_marker_jaccard_index.txt.gz";
+my $fo1 = "$out_dir/${group}_cutoff_${cutoff}_marker_jaccard_index_test.txt.gz";
 # open my $O1, '>', $fo1 or die "$0 : failed to open output file '$fo1' : $!\n";
 open my $O1, "| gzip >$fo1" or die $!;
 
-print $O1 "Marker\tjaacard_index\n";
+print $O1 "hotspot_chr\thotspot_start\thotspot_end\tMarker\tjaacard_index\n";
 
 foreach my $mark (@markers){
     my %hash1;
@@ -76,7 +78,7 @@ foreach my $mark (@markers){
         my $all_factor_length =sum @factor_lengths;
         my $denominator = $all_factor_length+$hotspot_length-$all_overlap;
         my $jaccard_index = $all_overlap/$denominator;
-        print $O1 "$mark\t$jaccard_index\n";
+        print $O1 "$k\t$mark\t$jaccard_index\n";
     }
     my $f3 = "../../output/${tissue}/Cis_eQTL/hotspot_cis_eQTL/interval_18/whole_blood_segment_hotspot_cutoff_0.176.bed.gz";
     open( my $I3 ,"gzip -dc $f3|") or die ("can not open input file '$f3' \n"); #读压缩文件
@@ -90,7 +92,7 @@ foreach my $mark (@markers){
         my $end =$f[2];
         my $k = "$chr\t$start\t$end";
         unless (exists $hash1{$k}){
-            print $O1 "$mark\t0\n";
+            print $O1 "$k\t$mark\t0\n";
         }
     }
 

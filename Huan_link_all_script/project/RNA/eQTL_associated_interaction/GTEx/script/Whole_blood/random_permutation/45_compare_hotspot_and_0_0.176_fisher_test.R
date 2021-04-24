@@ -9,9 +9,9 @@ library(data.table)
 library(Seurat)
 
 setwd("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Whole_Blood/Cis_eQTL/enrichment/interval_18/ALL/")
-hotspot<-read.table("hotspot_cutoff_0.176_histone_marker_jaccard_index.txt.gz",header = T,sep = "\t") %>% as.data.frame()
+hotspot<-read.table("hotspot_cutoff_0.176_marker_jaccard_index.txt.gz",header = T,sep = "\t") %>% as.data.frame()
 # random<-fread("0_0.176_jaccard_index_histone_marker_1000.txt.gz",header = T,sep = "\t")
-random<-read.table("0_0.176_jaccard_index_histone_marker_1000.txt.gz",header = T,sep = "\t") %>% as.data.frame()
+random<-read.table("0_0.176_jaccard_index_marker_1000.txt.gz",header = T,sep = "\t") %>% as.data.frame()
 
 
 active_mark <-c("H3K27ac","H3K9ac","H3K36me3","H3K4me1","H3K4me3")

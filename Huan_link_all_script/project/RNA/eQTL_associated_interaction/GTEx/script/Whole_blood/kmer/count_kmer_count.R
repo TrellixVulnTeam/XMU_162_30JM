@@ -19,7 +19,7 @@ sig_hotspot <-filter(org2, value>0)
 
 
 seq_count <- sig_hotspot%>%group_by(seq)%>%summarise(count=n())%>%as.data.frame()
-seq_count$ratio <-seq_count$count/(nrow(org)-1)
+seq_count$ratio <-seq_count$count/nrow(org)
 
 
 
@@ -28,6 +28,10 @@ p_theme<-theme(panel.grid =element_blank())+theme(panel.grid.major = element_bla
                                                 # axis.title.x = element_text(size = 10),
                                                 axis.line = element_line(colour = "black"))
 
+
+setwd("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/script/Whole_blood/kmer/")
+
+#----------------------------point plot
 pdf("./figure/Kmer_occur_count.pdf",width=3.2, height=3)
 
 p1 <-ggplot(seq_count,mapping = aes(x=seq ,y = count))+geom_point(size=0.1) +ylab("Count")+ 
@@ -42,26 +46,14 @@ p2 <-ggplot(seq_count,mapping = aes(x=seq ,y = ratio))+geom_point(size=0.1) +yla
 print(p2)
 dev.off()
 
-
+#------------summary boxplot
 pdf("./figure/Kmer_occur_boxplot_ratio.pdf",width=3.5, height=3.5)
 p<-ggplot(seq_count,aes(x=1, y=ratio))+geom_violin(fill="#a3d2ca",width=0.65)+geom_boxplot(fill = "#5eaaa8",width=0.2)+ theme(legend.position ="none")+p_theme+theme(axis.text.x=element_blank(),axis.ticks.x=element_blank())+xlab("Kmer")+ylab("Ratio")
 
 print(p)
 dev.off()
 
-pdf("./figure/Kmer_count_boxplot.pdf",width=3.5, height=3.5)
-p<-ggplot(org2,aes(x=seq, y=value))+geom_boxplot(aes(fill = seq))+ theme(legend.position ="none")+p_theme+theme(axis.text.x=element_blank(),axis.ticks.x=element_blank())+xlab("Kmer")+ylab("kmer count")
-
-print(p)
-dev.off()
-
-
-png("./figure/Kmer_count_boxplot.png")
-p<-ggplot(org2,aes(x=seq, y=value))+geom_boxplot(aes(fill = seq))+ theme(legend.position ="none")+p_theme+theme(axis.text.x=element_blank(),axis.ticks.x=element_blank())+xlab("Kmer")+ylab("kmer count")
-
-print(p)
-dev.off()
-
+#---------all boxplot
 png("./figure/Kmer_count_boxplot_without_outlier.png")
 p<-ggplot(org2,aes(x=seq, y=value))+geom_boxplot(aes(fill = seq),outlier.colour = NA)+ theme(legend.position ="none")+p_theme+theme(axis.text.x=element_blank(),axis.ticks.x=element_blank())+xlab("Kmer")+ylab("kmer count")
 
@@ -73,4 +65,35 @@ pdf("./figure/Kmer_count_boxplot_without_outlier.pdf",width=3.5, height=3.5)
 p<-ggplot(org2,aes(x=seq, y=value))+geom_boxplot(aes(fill = seq),outlier.colour = NA)+ theme(legend.position ="none")+p_theme+theme(axis.text.x=element_blank(),axis.ticks.x=element_blank())+xlab("Kmer")+ylab("kmer count")
 
 print(p)
+dev.off()
+
+#-------------------
+
+
+rs <-data.frame()
+
+cutoffs<-seq(0,0.25,0.01)
+
+for(cutoff in cutoffs){
+    aa <-filter(seq_count,ratio >cutoff)
+    kmer_ratio =nrow(aa)/(4^6)
+    kmer_count = nrow(aa)
+    tmp <-data.frame(hotspot_ratio =cutoff,kmer_ratio = kmer_ratio,kmer_count=kmer_count)
+    rs<-bind_rows(rs,tmp)
+    print(cutoff)
+}
+
+
+pdf("./figure/hit_hotspot_ratio_Kmer_ratio.pdf",width=3.2, height=3)
+
+p1 <-ggplot(rs,mapping = aes(x=hotspot_ratio ,y = kmer_ratio))+geom_point(size=0.1) +ylab("Kmer ratio")+ 
+    xlab("Hit hotspot ratio")+p_theme
+print(p1)
+dev.off()
+#-------------------
+pdf("./figure/hit_hotspot_ratio_Kmer_count.pdf",width=3.2, height=3)
+
+p1 <-ggplot(rs,mapping = aes(x=hotspot_ratio ,y = kmer_count))+geom_point(size=0.1) +ylab("Kmer count")+ 
+    xlab("Hit hotspot ratio")+p_theme
+print(p1)
 dev.off()

@@ -1,3 +1,6 @@
+#------------------------------------------unsed
+#--------------------------------------
+#----------------------------------------
 bedtools makewindows -b  merge_pos_info_narrow_peak_complement.bed.gz -w 379 | gzip >merge_pos_info_narrow_peak_complement_split.bed.gz
 
 

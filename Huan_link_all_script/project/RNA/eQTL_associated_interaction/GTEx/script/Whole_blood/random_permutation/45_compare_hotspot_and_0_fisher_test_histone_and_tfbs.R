@@ -14,22 +14,23 @@ hotspot<-read.table("hotspot_cutoff_0.176_marker_jaccard_index.txt.gz",header = 
 random<-read.table("0_jaccard_index_marker_1000.txt.gz",header = T,sep = "\t") %>% as.data.frame()
 
 
-active_mark <-c("H3K27ac","H3K9ac","H3K36me3","H3K4me1","H3K4me3")
-repressed_mark <-c("H3K27me3","H3K9me3")
+# active_mark <-c("H3K27ac","H3K9ac","H3K36me3","H3K4me1","H3K4me3")
+# repressed_mark <-c("H3K27me3","H3K9me3")
 
 hotspot$Random_number <- 1
 hotspot$Class <- "hotspot"
 random$Class <- "random"
 
 rs<- bind_rows(hotspot,random)
-marks <-c("H3K27ac","H3K9ac","H3K36me3","H3K4me1","H3K4me3","H3K27me3","H3K9me3")
+# marks <-c("H3K27ac","H3K9ac","H3K36me3","H3K4me1","H3K4me3","H3K27me3","H3K9me3")
+marks <-c("H3K27ac","H3K9ac","H3K36me3","H3K4me1","H3K4me3","H3K27me3","H3K9me3","CHROMATIN_Accessibility","TFBS","CTCF")
 #-------------two side
 all_fisher <-data.frame()
 for(state in marks){
     aa <-filter(rs,Marker==state)%>%filter(jaacard_index >0)%>%group_by(Class)%>%summarise(table(Class)%>%as.data.frame())%>%as.data.frame()
     a <-filter(aa,Class=="hotspot")$Freq
     r_c<-filter(aa,Class=="random")$Freq
-    pre_data <-matrix(c(a,r_c, nrow(hotspot)/7-a, nrow(hotspot)/7*1000-r_c), nrow = 2)
+    pre_data <-matrix(c(a,r_c, nrow(hotspot)/10-a, nrow(hotspot)/10*1000-r_c), nrow = 2)
 
     # fisher_test_result <-fisher.test(pre_data,alternative = "greater")
     fisher_test_result <-fisher.test(pre_data)
@@ -62,7 +63,7 @@ for(state in marks){
     print(state)
 }
 
-write.table(all_fisher,"./figure/0/compare_0_jaacard_index_fisher_test_two_side.txt",row.names = F, col.names = T,quote =F,sep="\t")
+write.table(all_fisher,"./figure/0/compare_0_jaacard_index_fisher_test_histone_tfbs_two_side.txt",row.names = F, col.names = T,quote =F,sep="\t")
 
 #---------------alternative = "greater"
 all_fisher <-data.frame()
@@ -70,7 +71,7 @@ for(state in marks){
     aa <-filter(rs,Marker==state)%>%filter(jaacard_index >0)%>%group_by(Class)%>%summarise(table(Class)%>%as.data.frame())%>%as.data.frame()
     a <-filter(aa,Class=="hotspot")$Freq
     r_c<-filter(aa,Class=="random")$Freq
-    pre_data <-matrix(c(a,r_c, nrow(hotspot)/7-a, nrow(hotspot)/7*1000-r_c), nrow = 2)
+    pre_data <-matrix(c(a,r_c, nrow(hotspot)/10-a, nrow(hotspot)/10*1000-r_c), nrow = 2)
 
     fisher_test_result <-fisher.test(pre_data,alternative = "greater")
     # fisher_test_result <-fisher.test(pre_data)
@@ -98,7 +99,7 @@ for(state in marks){
     print(state)
 }
 
-write.table(all_fisher,"./figure/0/compare_0_jaacard_index_fisher_test_greater.txt",row.names = F, col.names = T,quote =F,sep="\t")
+write.table(all_fisher,"./figure/0/compare_0_jaacard_index_fisher_test_histone_tfbs_greater.txt",row.names = F, col.names = T,quote =F,sep="\t")
 
 
 
