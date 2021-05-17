@@ -14,7 +14,7 @@ setwd("/share/data0/QTLbase/huan/GTEx/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/inte
 
 #-------------
 ProcessBedGz<-function(i=NULL){
-    setwd("/share/data0/QTLbase/huan/GTEx/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_18_filter/6/kmer/random/background_original_random/0/")
+    setwd("/share/data0/QTLbase/huan/GTEx/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_18_filter/6/kmer/random/original_random/")
     print(i)
     file_name <-paste0(i,"_6mers_uc_us_no_log.csv.gz")
     org<-read.csv(file_name,header = T,sep = ",") %>% as.data.frame()

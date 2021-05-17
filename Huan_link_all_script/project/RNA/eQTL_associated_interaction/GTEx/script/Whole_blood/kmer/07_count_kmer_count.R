@@ -8,6 +8,7 @@ library(gridExtra)
 library(ggpval)
 library(Seurat)
 library(reshape2)
+library(R.utils)
 
 setwd("/share/data0/QTLbase/huan/GTEx/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_18_filter/6/kmer/ALL/")
 org<-read.csv("6mers_uc_us_no_log.csv.gz",header = T,sep = ",") %>% as.data.frame()
@@ -82,8 +83,9 @@ for(cutoff in cutoffs){
     rs<-bind_rows(rs,tmp)
     print(cutoff)
 }
+#--------------------------
 
-
+#-------------------
 pdf("./figure/hit_hotspot_ratio_Kmer_ratio.pdf",width=3.2, height=3)
 
 p1 <-ggplot(rs,mapping = aes(x=hotspot_ratio ,y = kmer_ratio))+geom_point(size=0.1) +ylab("Kmer ratio")+ 
@@ -97,3 +99,22 @@ p1 <-ggplot(rs,mapping = aes(x=hotspot_ratio ,y = kmer_count))+geom_point(size=0
     xlab("Hit hotspot ratio")+p_theme
 print(p1)
 dev.off()
+
+#---------------
+
+setwd("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/script/Whole_blood/kmer/")
+write.table(rs,"./figure/hit_hospot_ratio_kmer_count.txt",row.names = F, col.names = T,quote =F,sep="\t")
+write.table(seq_count,"./figure/hit_hospot_ratio_kmer.txt",row.names = F, col.names = T,quote =F,sep="\t")
+
+hotspot_kmer_need_test <-filter(seq_count,ratio >0.1)
+hotspot_kmer_need_test <-hotspot_kmer_need_test
+
+unique_hotspot_kmer_need_test <-as.data.frame(unique(hotspot_kmer_need_test$seq))
+colnames(unique_hotspot_kmer_need_test)[1] <-"seq"
+org3 <-dplyr::select(org2,-hotspot)
+hotspot_kmer_need_test_value <-inner_join(org3,unique_hotspot_kmer_need_test,by="seq")
+
+save(hotspot_kmer_need_test_value,file="./figure/hotspot_kmer_need_test_value.Rdata")
+write.table(hotspot_kmer_need_test_value,"./figure/hit_hospot_ratio_kmer_value.txt",row.names = F, col.names = T,quote =F,sep="\t")
+
+gzip("./figure/hit_hospot_ratio_kmer_value.txt")

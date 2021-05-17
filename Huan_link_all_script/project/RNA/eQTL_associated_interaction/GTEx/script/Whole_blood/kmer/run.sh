@@ -54,7 +54,7 @@ gzip 6mers_uc_us_log.csv
 gzip 6mers.csv
 
 #---------
-Rscript count_kmer_count.R
+Rscript 07_count_kmer_count.R
 
 #----------------------------
 Rscript boxplot_kmer_count_chr1.R
