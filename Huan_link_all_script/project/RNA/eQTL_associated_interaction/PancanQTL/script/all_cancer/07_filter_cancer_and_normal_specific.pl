@@ -1,4 +1,4 @@
-#利用../../data/pancanQTL_gtex_eQTL.txt，../../output/cancer_total/share/all/${cancer}_contain_${tissue}.bed，"../../output/${cancer}/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/${cancer}_segment_hotspot_cutoff_${cutoff}.bed.gz";"../../../GTEx/output/${tissue}/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/${tissue11}_segment_hotspot_cutoff_${cutoff}.bed.gz" 鉴别组织特异的hotspot"$output_dir/${tissue}_specific.bed.gz"和cancer特异的hotspot  $output_dir/${cancer}_specific.bed.gz,cancer 特异汇总文件为../../output/cancer_total/specific/pure/cancer_specific.bed.gz
+#利用../../data/pancanQTL_gtex_eQTL.txt，../../output/cancer_total/share/all/${cancer}_contain_${tissue}.bed，"../../output/${cancer}/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/${cancer}_segment_hotspot_cutoff_${cutoff}.bed.gz";"../../../GTEx/output/${tissue}/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/${tissue11}_segment_hotspot_cutoff_${cutoff}.bed.gz" 鉴别组织特异的hotspot"$output_dir/tissue_${cancer}_${tissue}_specific.bed.gz"和cancer特异的hotspot  $output_dir/cancer_${cancer}_${tissue}_specific.bed.gz,cancer 特异汇总文件为../../output/cancer_total/specific/pure/cancer_specific.bed.gz，tissue特异汇总文件../../output/cancer_total/specific/pure/tissue_specific.bed.gz
 #!/usr/bin/perl
 use warnings;
 use strict; 
@@ -16,6 +16,14 @@ my $fo3 = "../../output/cancer_total/specific/pure/cancer_specific.bed.gz";
 open my $O3, "| gzip >$fo3" or die $!;
 
 print $O3 "h_chr\th_start\th_end\tcancer\ttissue\n";
+
+#--------------------
+my $fo4 = "../../output/cancer_total/specific/pure/tissue_specific.bed.gz";
+open my $O4, "| gzip >$fo4" or die $!;
+
+print $O4 "h_chr\th_start\th_end\tcancer\ttissue\n";
+
+#------------------------
 
 my %hash1;
 while(<$I1>)
@@ -57,9 +65,9 @@ foreach my $cancer(@cancers){
             }
             #_--------------------
 
-            my $fo1 = "$output_dir/${cancer}_specific.bed.gz";
+            my $fo1 = "$output_dir/cancer_${cancer}_${tissue}_specific.bed.gz";
             open my $O1, "| gzip >$fo1" or die $!;
-            my $fo2 = "$output_dir/${tissue}_specific.bed.gz";
+            my $fo2 = "$output_dir/tissue_${cancer}_${tissue}_specific.bed.gz";
             open my $O2, "| gzip >$fo2" or die $!;
 
 
@@ -109,7 +117,8 @@ foreach my $cancer(@cancers){
                 my $end = $f[2];
                 my $k3 = "$chr\t$start\t$end"; 
                 unless(exists $hash3{$k3}){
-                    print $O2 "$_\n";
+                    print $O2 "$_\t$cancer\t$tissue\n";
+                    print $O4 "$_\t$cancer\t$tissue\n";
                 }
             } 
             #------------------------------------

@@ -1,4 +1,4 @@
-#对 "../../output/Tissue_total/share/total/05_all_tissue_intersect.bed.gz" 进行 tissue合并得../../output/Tissue_total/share/total/06_all_tissue_share_hotspot_total_contain.bed.gz
+#对 "../../output/Tissue_total/share/total/05_absolute_tissue_intersect.bed.gz" 进行 tissue合并得../../output/Tissue_total/share/total/06_all_tissue_share_hotspot_total_contain.bed.gz
 #!/usr/bin/perl
 use warnings;
 use strict; 
@@ -10,7 +10,7 @@ my $cutoff =0.176;
 # my $tissue = "Lung";
 my $j = 18;
 
-my $f1 = "../../output/Tissue_total/share/total/05_all_tissue_intersect.bed.gz";
+my $f1 = "../../output/Tissue_total/share/total/05_absolute_tissue_intersect.bed.gz";
 open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件
 
 
