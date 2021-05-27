@@ -95,14 +95,14 @@ dev.off()
 
 
 
-org$cancer_tissue<-factor(org$cancer_tissue,levels= sort(org$cancer_tissue,decreasing = T))
-p2 <-ggplot(org,mapping=aes(x=cancer_tissue,y=Number)) +
-    p_theme+geom_segment(aes(xend =cancer_tissue),yend = 0,colour = 'grey35')+
-    geom_point(size = 2, color= "#008c9e")+
-    xlab("")+
-    theme(axis.text.y = element_text(size =9,color="black"),
-    axis.text.x = element_text(size =5.4,color="black",angle = 30,hjust=1))
-    # scale_y_continuous(expand = c(0,0))
-pdf("12_Cleveland_dot_plot_number_of_cancer_share_hotspot___test.pdf",height = 3,width = 5.5)
-print(p2)
-dev.off()
+# org$cancer_tissue<-factor(org$cancer_tissue,levels= sort(org$cancer_tissue,decreasing = T))
+# p2 <-ggplot(org,mapping=aes(x=cancer_tissue,y=Number)) +
+#     p_theme+geom_segment(aes(xend =cancer_tissue),yend = 0,colour = 'grey35')+
+#     geom_point(size = 2, color= "#008c9e")+
+#     xlab("")+
+#     theme(axis.text.y = element_text(size =9,color="black"),
+#     axis.text.x = element_text(size =5.4,color="black",angle = 30,hjust=1))
+#     # scale_y_continuous(expand = c(0,0))
+# pdf("12_Cleveland_dot_plot_number_of_cancer_share_hotspot___test.pdf",height = 3,width = 5.5)
+# print(p2)
+# dev.off()
