@@ -12,6 +12,10 @@ perl 04_count_annotation_marker.pl #对/share/data0/QTLbase/huan/GTEx/${tissue}/
 perl 05_calculate_jaccard_index.pl #对$input_dir/${mark}_${i}_resemble_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz 进行jaccard index 进行计算,得的marker进行计算,得"$out_dir/${cutoff2}_jaccard_index_histone_marker.txt.gz";
 perl 05_calculate_jaccard_index_1000.pl 
 
+
+perl 06_annotation_chrom_state_emplambda_0_0.176_par.pl #对10000background_original_random/0_0.176进行chromatin_states的注释，得"/share/data0/QTLbase/huan/GTEx/${tissue}/Cis_eQTL/interval_18/annotation/ALL/${group}/${cutoff}/background_original_random/$cutoff2"/${i}_15_state_resemble_${input_file_base_name}
+perl 07_filter_annotation_chrom_state_par.pl #因为每个片段会被多个chrom state 注释，根据对hotspot的覆盖比例，选出覆盖比例最高的state, interval_18 时，对"/share/data0/QTLbase/huan/GTEx/${tissue}/Cis_eQTL/interval_18/annotation/ALL/${group}/${cutoff}/background_original_random/$cutoff2/${state}_state_resemble_${i}_resemble_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz"进行过滤，得$dir/filter_$name
+"/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/script/Whole_blood/random_permutation/34_annotation_chrom_state_original_random_and_permutation_hotspot_par.pl"
 zless 
 
 

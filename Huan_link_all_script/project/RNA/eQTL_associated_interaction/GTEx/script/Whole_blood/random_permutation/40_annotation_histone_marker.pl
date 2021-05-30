@@ -34,7 +34,7 @@ while(<$I1>)
 my $roadmap_biospecimen = $hash1{$tissue};
 print "$roadmap_biospecimen\n";
 
-my $pm = Parallel::ForkManager->new(20); ## 设置最大的线程数目
+my $pm = Parallel::ForkManager->new(40); ## 设置最大的线程数目
 # foreach my $type(@types){
 my $out_dir = "/share/data0/QTLbase/huan/GTEx/${tissue}/Cis_eQTL/interval_18/annotation/ALL/${group}/${cutoff}/$type";
 #-----------------------------------------------------------------------------

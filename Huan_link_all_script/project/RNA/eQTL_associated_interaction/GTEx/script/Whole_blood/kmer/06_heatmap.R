@@ -82,6 +82,11 @@ pdf("./figure/06_kmer_heatmap_contain_all.pdf")
 pheatmap(as.matrix(BBB),cluster_rows = FALSE, cluster_cols = FALSE,color= color2,angle_col = 0)
 dev.off()
 
+pdf("./figure/06_kmer_heatmap_contain_all_no_scale.pdf")
+pheatmap(as.matrix(aaa),cluster_rows = FALSE, cluster_cols = FALSE,color= color2,angle_col = 0)
+dev.off()
+
+
 
 out_aaa <-aaa
 

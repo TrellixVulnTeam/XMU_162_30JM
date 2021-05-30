@@ -3,3 +3,6 @@ perl 02_random_genomic_resemble_hotspot.pl #产生10000个与../../../output/${t
 perl 03_annotation_marker.pl  #对10000个../../../../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18_random/background_original_random/${cutoff}/$cutoff2/*进行histone marker的注释，得/share/data0/QTLbase/huan/GTEx/${tissue}/Cis_eQTL/interval_18/annotation/ALL/${group}/${cutoff}/background_original_random/$cutoff2/*
 perl 04_count_annotation_marker.pl #对/share/data0/QTLbase/huan/GTEx/${tissue}/Cis_eQTL/interval_18/annotation/ALL/${group}/${cutoff}/$type/$cutoff2/*的marker进行count,得"$out_dir/${type}_${cutoff2}_histone_marker.txt.gz";
 perl 05_calculate_jaccard_index.pl #对$input_dir/${mark}_${i}_resemble_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz 进行jaccard index 进行计算,得的marker进行计算,得"$out_dir/${cutoff2}_jaccard_index_histone_marker.txt.gz";
+perl 06_annotation_chrom_state_emplambda_0_par.pl #对10000 background_original_random/0进行chromatin_states的注释，得"/share/data0/QTLbase/huan/GTEx/${tissue}/Cis_eQTL/interval_18/annotation/ALL/${group}/${cutoff}/background_original_random/$cutoff2"/${i}_15_state_resemble_${input_file_base_name}
+perl 07_filter_annotation_chrom_state_par.pl
+perl 07_count_per_state_number.pl

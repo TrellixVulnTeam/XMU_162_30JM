@@ -1,4 +1,4 @@
-#对1000个original_random和random_permutation进行chromatin_states的注释，得../../../output/${tissue}/Cis_eQTL/annotation/interval_18/ALL/${group}/${cutoff}/${type}/${i}_25_state_resemble_${input_file_base_name}
+#对10000个original_random和random_permutation进行chromatin_states的注释，得../../../output/${tissue}/Cis_eQTL/annotation/interval_18/ALL/${group}/${cutoff}/${type}/${i}_25_state_resemble_${input_file_base_name}
 #!/usr/bin/perl
 use warnings;
 use strict; 

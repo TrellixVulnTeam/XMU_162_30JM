@@ -19,10 +19,11 @@ perl 11_count_cancer_tissue_share_hotspot.pl  #../../output/cancer_total/11_coun
 # Rscript 11_cancer_tissue_share_hotspot.R
 Rscript 12_barplot_Cleveland_distbution_of_hotspot_in_share_tissues.R 
 Rscript 13_Cleveland_dot_plot.R
+perl 14_extract_cancer_qtl.pl  #对../../data/cis_eQTLs_all_re.gz进行整理，得cancer 对应的文件"../../output/cancer_total/specific/pure/${cancer}/qtl_gene.bed.gz";
+perl 15_find_gene_affected_by_cancer_specific_hotspot.pl  #找 hotspot对应的eGene $output_dir/cancer_${cancer}_${tissue}_specific.bed.gz 和"$output_dir/qtl_gene.bed.gz" 得 "$output_dir/cancer_${cancer}_${tissue}_specific_gene.bed.gz"
+#得汇总文件"../../output/cancer_total/15_cancer_specfic_hotspot_gene.txt.gz"
 
-perl 14_find_gene_affected_by_cancer_specific_hotspot.pl  
-
-
+Rscript 16_KEGG_and_go.R
 
 
 
