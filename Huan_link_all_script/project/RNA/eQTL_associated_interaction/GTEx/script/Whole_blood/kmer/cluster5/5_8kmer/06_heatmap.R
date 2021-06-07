@@ -75,6 +75,9 @@ normalization<-function(x){
 
 # BBB<-apply(figure_use,1,normalization)%>%data.frame()%>%t()%>%as.matrix()
 
+
+colnames(aaa) <-c("5_0","5_1","5_2","5_3","5_4","5_5","5_ALL")
+
 BBB<-apply(aaa,1,normalization)%>%data.frame()%>%t()
 # colnames(BBB)<-cluster_number
 color2 = colorRampPalette(c('#c6dbef','#6baed6','#2171b5'))(50)
@@ -84,11 +87,17 @@ pdf("./figure/03_5kmer_heatmap_contain_all.pdf")
 pheatmap(as.matrix(BBB),cluster_rows = FALSE, cluster_cols = FALSE,color= color2,angle_col = 0)
 dev.off()
 
-# setwd("/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/script/Whole_blood/kmer/cluster5/5_8kmer/")
-# pdf("./figure/06_kmer_heatmap_contain_all.pdf")
-# pheatmap(BBB,cluster_rows = FALSE, cluster_cols = FALSE,color= color2,angle_col = "180")
-# dev.off()
+pdf("./figure/03_5kmer_heatmap_contain_all_before_sacle.pdf")
+pheatmap(as.matrix(aaa),cluster_rows = FALSE, cluster_cols = FALSE,color= color2,angle_col = 0)
+dev.off()
 
+pdf("./figure/03_5kmer_heatmap_contain_all_number.pdf")
+pheatmap(as.matrix(BBB),cluster_rows = FALSE, cluster_cols = FALSE,color= color2,angle_col = 0,display_numbers = TRUE)
+dev.off()
+
+pdf("./figure/03_5kmer_heatmap_contain_all_before_sacle_number.pdf")
+pheatmap(as.matrix(aaa),cluster_rows = FALSE, cluster_cols = FALSE,color= color2,angle_col = 0,display_numbers = TRUE)
+dev.off()
 
 
 out_aaa <-aaa

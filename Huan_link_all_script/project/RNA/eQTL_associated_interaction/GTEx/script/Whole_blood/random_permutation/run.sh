@@ -25,8 +25,11 @@ perl 41_count_annotation_marker.pl ##对/share/data0/QTLbase/huan/GTEx/${tissue}
 
 #------------histone marker
 Rsript 42_boxplot_plot_compare_hotspot_and_original_random_histone_marker_count.R
+Rsript 42_boxplot_plot_compare_hotspot_and_original_random_histone_marker_percentage.R
 Rsript 42_boxplot_plot_compare_hotspot_and_0_histone_marker.R 
 Rsript 42_boxplot_plot_compare_hotspot_and_0_0.176_histone_marker_count.R
+#-----------------------------------------------------------------------------
+
 
 perl 43_calculate_jaccard_index_original_random.pl # #对$input_dir/${mark}_${i}_resemble_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz 进行jaccard index 进行计算,得的marker进行计算,得"$out_dir/${type}_jaccard_index_histone_marker.txt.gz";
 

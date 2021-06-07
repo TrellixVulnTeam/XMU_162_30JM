@@ -64,7 +64,7 @@ foreach my $tissue1(@tissues){
                 # open( my $I3 ,"gzip -dc $f3|") or die ("can not open input file '$f3' \n"); #读压缩文件  
                 open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n";
                 #-------------
-                my(%hash2,%hash3);
+                my(%hash2,%hash3,%hash5);
                 while(<$I1>)
                 {
                     chomp;
@@ -73,7 +73,8 @@ foreach my $tissue1(@tissues){
                     my $h2 = join("\t",@f[3..5]);
                     my $k = "$h1\t$h2";
                     $hash2{$k}=1;
-                    $hash3{$h1}=1;
+                    $hash3{$h1}=1; #---tissue1
+                    $hash5{$h2}=1; #---tissue2
                     print $O1 "$k\t$tissue1\t$tissue2\n";
                 }   
 
@@ -90,7 +91,8 @@ foreach my $tissue1(@tissues){
                     my $k = "$h2\t$h1"; #与tmp1 相反，得到仍然得到tissue1，tissue2;
                     unless(exists $hash2{$k}){
                         $hash2{$k}=1;
-                        $hash3{$h2}=1;
+                        $hash3{$h2}=1;#---tissue1
+                        $hash5{$h1}=1;#---tissue2
                         print $O1 "$k\t$tissue1\t$tissue2\n";
                     }
                 } 
@@ -118,7 +120,7 @@ foreach my $tissue1(@tissues){
                     chomp;
                     my @f= split/\t/;
                     my $h1 = join("\t",@f[0..2]);
-                    unless(exists $hash3{$h1}){
+                    unless(exists $hash5{$h1}){
                         print $O2 "$h1\t$tissue2\t$tissue1\n";
                         push @tissue2_out_absolute,$h1;
                     }

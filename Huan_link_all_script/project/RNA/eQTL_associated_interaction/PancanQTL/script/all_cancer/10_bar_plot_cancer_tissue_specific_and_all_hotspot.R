@@ -83,7 +83,7 @@ p2 <-ggplot(cancer_f,aes(x=cancer_tissue,y=negative,fill=Class))+
         axis.line.y=element_blank(),
         legend.position = "none", 
         plot.title=element_text(hjust = 0.5))+
-        scale_y_continuous (limits = c(-66000,0),breaks = c(-60000,-40000,-20000,0),labels = c("-60,000","-40,000","-20,000",0),expand=c(0,0))
+        scale_y_continuous (limits = c(-66000,0),breaks = c(-60000,-40000,-20000,0),labels = c("60,000","40,000","20,000",0),expand=c(0,0))
 print(p2)
 dev.off()
 

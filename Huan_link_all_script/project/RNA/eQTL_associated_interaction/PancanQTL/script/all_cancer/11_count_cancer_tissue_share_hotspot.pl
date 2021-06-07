@@ -1,4 +1,4 @@
-#得#../../output/cancer_total/11_count_cancer_tissue_share_hotspot.txt.gz
+#利用../../output/cancer_total/share/total/05_cancer_share_total.bed.gz得#../../output/cancer_total/11_count_cancer_tissue_share_hotspot.txt.gz
 #!/usr/bin/perl
 use warnings;
 use strict; 

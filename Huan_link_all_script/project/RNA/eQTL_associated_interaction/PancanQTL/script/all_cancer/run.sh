@@ -15,7 +15,9 @@ perl 09_count_cancer_related_tissue_specific_hotspot.pl #"../../output/cancer_to
 
 Rscript 10_bar_plot_cancer_tissue_specific_and_all_hotspot.R
 
-perl 11_count_cancer_tissue_share_hotspot.pl  #../../output/cancer_total/11_count_cancer_tissue_share_hotspot.txt.gz
+Rscript 10_bar_plot_cancer_specific_and_all_hotspot.R
+
+perl 11_count_cancer_tissue_share_hotspot.pl  #利用../../output/cancer_total/share/total/05_cancer_share_total.bed.gz得#../../output/cancer_total/11_count_cancer_tissue_share_hotspot.txt.gz
 # Rscript 11_cancer_tissue_share_hotspot.R
 Rscript 12_barplot_Cleveland_distbution_of_hotspot_in_share_tissues.R 
 Rscript 13_Cleveland_dot_plot.R
@@ -24,6 +26,13 @@ perl 15_find_gene_affected_by_cancer_specific_hotspot.pl  #找 hotspot对应的e
 #得汇总文件"../../output/cancer_total/15_cancer_specfic_hotspot_gene.txt.gz"
 
 Rscript 16_KEGG_and_go.R
+perl 17_bedtools_cancer_mutual_absolute.pl #cancer 两两之间进行 intersect ，找全部share的hotspot,得汇总文件"../../output/cancar_total/share/total/17_absolute_cancer_cancer_intersect.bed.gz"
+perl 18_cancer_cancer_share_hotspot.pl #对 "../../output/cancer_total/share/total/17_absolute_cancer_cancer_intersect.bed.gz" 进行 tissue合并得"../../output/cancer_total/share/total/18_all_tissue_cancer_hotspot_total_contain.bed.gz"
+perl 19_count_share_cancer_number.pl #对"../../output/cancer_total/share/total/18_all_tissue_cancer_hotspot_total_contain.bed.gz"进行统计,得"../../output/cancer_total/19_share_cancer_number_count.txt.gz";
+Rscript 20_barplot_distbution_of_hotspot_in_share_cancers.R
+perl 21_count_jaccard_index_similarity_cancer_cancer.pl #得100%绝对overlap文件"../../output/cancer_total/21_cancer_pair_ovelap_absolute.txt.gz"，得没有在"../../output/cancer_total/21_cancer_pair_ovelap_absolute.txt.gz"中的片段"../../output/cancer_total/21_cancer_pair_out_ovelap_absolute.txt.gz"
+#得用于计算类似jaccard index 数据"../../output/cancer_total/21_cancer_pair_overlap_index_and_related_number.txt.gz"，得类似jaccard index "../../output/cancer_total/21_cancer_pair_overlap_index.txt.gz"
 
+Rscript 22_heatmap_cancer_tissue_share.R
 
-
+Rscript 24_pathway_enrichment_plot.R

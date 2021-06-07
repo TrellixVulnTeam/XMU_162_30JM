@@ -88,14 +88,14 @@ for(cutoff in cutoffs){
 #-------------------
 pdf("./figure/hit_hotspot_ratio_Kmer_ratio.pdf",width=3.2, height=3)
 
-p1 <-ggplot(rs,mapping = aes(x=hotspot_ratio ,y = kmer_ratio))+geom_point(size=0.1) +ylab("Kmer ratio")+ 
+p1 <-ggplot(rs,mapping = aes(x=hotspot_ratio ,y = kmer_ratio))+geom_point(size=0.1) +ylab("Number of kmer")+ 
     xlab("Hit hotspot ratio")+p_theme
 print(p1)
 dev.off()
 #-------------------
 pdf("./figure/hit_hotspot_ratio_Kmer_count.pdf",width=3.2, height=3)
 
-p1 <-ggplot(rs,mapping = aes(x=hotspot_ratio ,y = kmer_count))+geom_point(size=0.1) +ylab("Kmer count")+ 
+p1 <-ggplot(rs,mapping = aes(x=hotspot_ratio ,y = kmer_count))+geom_point(size=0.1) +ylab("Number of kmer")+ 
     xlab("Hit hotspot ratio")+p_theme
 print(p1)
 dev.off()

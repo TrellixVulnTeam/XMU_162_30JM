@@ -27,10 +27,10 @@ perl 11_count_share_tissue_number.pl  #"../../output/Tissue_total/share/total/06
 #----------------------plot
 
 
-Rscript barplot_distbution_of_hotspot_in_share_tissues.R 
+Rscript 12_barplot_distbution_of_hotspot_in_share_tissues.R 
 
-Rscript tissue_specific_and_all_hotspot.R
+Rscript 13_tissue_specific_and_all_hotspot.R
 
-Rscript heatmap_tissue_tissue_share.R
+Rscript 14_heatmap_tissue_tissue_share.R
 
 
