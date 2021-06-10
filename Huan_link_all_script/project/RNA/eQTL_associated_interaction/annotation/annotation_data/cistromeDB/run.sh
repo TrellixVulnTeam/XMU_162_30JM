@@ -21,7 +21,7 @@ cat ./cell_line_info/04_cell_line_without_info_original.txt | awk 'NR >1'| sort 
 # cat unique_cell_line_without_info.txt | sort > unique_cell_line_without_info_sort.txt
 perl 05_filter_normal_chrom_info.pl # #筛选@files = ("./Human_FACTOR/human_factor_full_QC.txt","./HISTONE_MARK_AND_VARIANT/human_hm_full_QC.txt","./Human_CHROMATIN_Accessibility/human_ca_full_QC.txt") 中在"./cell_line_info/04_unique_cell_line_without_info_sort_mannual_find_info.txt"的cell lien，并在相应文件夹提取出文件得${output_dir}/merge_pos_info_sample_narrow_peak.bed.gz，得对于文件及peak信息文件"${output_dir}/merge_pos_info_narrow_peak.bed.gz"
 
-perl 061_union_segment.pl #将${dir}/merge_pos_info_narrow_peak_sort.bed.gz bedtools merge -i 为${dir}/merge_pos_info_narrow_peak_sort_union.bed.gz，得互补文件${dir}/merge_pos_info_narrow_peak_union_complement.bed.gz
+perl 061_union_segment.pl #将normal cell ${dir}/merge_pos_info_narrow_peak_sort.bed.gz bedtools merge -i 为${dir}/merge_pos_info_narrow_peak_sort_union.bed.gz，得互补文件${dir}/merge_pos_info_narrow_peak_union_complement.bed.gz
 
 # Rscript 06_plot_length_distribution_of_factor_and_calculate_mean.R
 # perl 07_get_no_factor_and_split.pl 

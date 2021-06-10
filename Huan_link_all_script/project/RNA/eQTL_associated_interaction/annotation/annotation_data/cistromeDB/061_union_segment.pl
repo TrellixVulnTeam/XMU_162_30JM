@@ -1,4 +1,4 @@
-#将${dir}/merge_pos_info_narrow_peak_sort.bed.gz bedtools merge -i 为${dir}/merge_pos_info_narrow_peak_sort_union.bed.gz，得互补文件${dir}/merge_pos_info_narrow_peak_union_complement.bed.gz
+#将normal cell ${dir}/merge_pos_info_narrow_peak_sort.bed.gz bedtools merge -i 为${dir}/merge_pos_info_narrow_peak_sort_union.bed.gz，得互补文件${dir}/merge_pos_info_narrow_peak_union_complement.bed.gz
 
 #!/usr/bin/perl
 use warnings;

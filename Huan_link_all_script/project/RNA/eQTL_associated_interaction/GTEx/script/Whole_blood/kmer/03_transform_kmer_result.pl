@@ -38,6 +38,9 @@ while(<$I1>)
 close($I1);
 close($O1);
 
+
+
+
 my @factors = ("TFBS","CHROMATIN_Accessibility","CTCF","H3K27ac","H3K27me3","H3K36me3","H3K4me1","H3K4me3","H3K9ac","H3K9me3");
 my $file_name = "Whole_Blood_segment_hotspot_cutoff_0.176.bed.gz";
 my $factor_dir = "/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Whole_Blood/Cis_eQTL/annotation/interval_18/ALL/factor/hotspot/0.176";

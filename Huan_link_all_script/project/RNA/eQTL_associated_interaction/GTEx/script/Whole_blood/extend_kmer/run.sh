@@ -8,7 +8,13 @@ seekr_kmer_counts extend_Whole_Blood_segment_hotspot_cutoff_0.176.fa -o 6mers.cs
 
 seekr_pearson 6mers.csv 6mers.csv -o example_vs_self.csv
 seekr_graph example_vs_self.csv 0.13 -g example_vs_self.gml -c communities.csv
+
+seekr_kmer_counts extend_Whole_Blood_segment_hotspot_cutoff_0.176.fa -o 6mers_uc_us_no_log.csv --log2 none -uc -us
+gzip 6mers_uc_us_no_log.csv
 conda deactivate
 
 
 perl 02_random_genomic_resemble_extend_hotspot.pl
+perl 03_transform_kmer_result_and_anno.pl
+
+
