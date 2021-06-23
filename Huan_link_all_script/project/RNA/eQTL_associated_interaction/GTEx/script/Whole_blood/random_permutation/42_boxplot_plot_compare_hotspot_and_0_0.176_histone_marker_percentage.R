@@ -32,8 +32,8 @@ p_theme<-theme(panel.grid =element_blank())+theme(panel.grid.major = element_bla
 #---------------
 #-------------"1_TssA"
 symnum.args <- list(cutpoints = c(0.0001, 0.001, 0.01, 0.05, 1), symbols = c("****", "***", "**", "*", "ns"))
-
-active_mark <-c("H3K27ac","H3K9ac","H3K36me3","H3K4me1","H3K4me3")
+# bbb$factor<-factor(bbb$factor,levels= c("CHROMATIN Accessibility","TFBS","CTCF","H3K27ac","H3K4me1","H3K4me3","H3K9ac","H3K36me3","H3K27me3","H3K9me3"))
+active_mark <-c("H3K27ac","H3K4me1","H3K4me3","H3K9ac","H3K36me3")
 repressed_mark <-c("H3K27me3","H3K9me3")
 other_marker <- c("CHROMATIN_Accessibility","TFBS","CTCF")
 all_histone_marker <-c(active_mark,repressed_mark)

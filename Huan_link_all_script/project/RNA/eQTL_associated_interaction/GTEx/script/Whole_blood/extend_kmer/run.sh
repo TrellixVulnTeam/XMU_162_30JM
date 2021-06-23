@@ -14,7 +14,9 @@ gzip 6mers_uc_us_no_log.csv
 conda deactivate
 
 
-perl 02_random_genomic_resemble_extend_hotspot.pl
+# perl 02_random_genomic_resemble_extend_hotspot.pl
 perl 03_transform_kmer_result_and_anno.pl
-
+Rscript 05_Pie.R
+Rscript 06_heatmap.R
+Rscript 07_count_kmer_count.R
 

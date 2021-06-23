@@ -32,3 +32,6 @@ perl 061_union_segment.pl #将normal cell ${dir}/merge_pos_info_narrow_peak_sort
 # perl 061_union_segment.pl #将${dir}/merge_pos_info_narrow_peak_sort.bed.gz bedtools merge -i 为${dir}/merge_pos_info_narrow_peak_sort_union.bed.gz，得互补文件${dir}/merge_pos_info_narrow_peak_union_complement.bed.gz
 # Rscript 06_plot_length_distribution_of_factor_and_calculate_mean_union.R
 
+#----------------------------
+#cancer.txt from lichengxin
+perl 08_filter_TCGA_marker.pl #

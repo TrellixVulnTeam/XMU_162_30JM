@@ -33,4 +33,7 @@ Rscript 13_tissue_specific_and_all_hotspot.R
 
 Rscript 14_heatmap_tissue_tissue_share.R
 
+perl 15_split_hotspot.pl  #将hotspot makewindows 1MB  ../../output/${tissue1}/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/${tissue11}_segment_hotspot_cutoff_${cutoff}_makewin_1MB.bed.gz
+
+Rscript 16_circos_hotspot_heatmap.R  
 

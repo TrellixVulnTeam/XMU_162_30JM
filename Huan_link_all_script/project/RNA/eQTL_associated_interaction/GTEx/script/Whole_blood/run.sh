@@ -42,8 +42,7 @@ perl 21_NHP_background_intersect_hotspot.pl #将"/home/huanhuan/project/RNA/eQTL
 
 perl 22_count_eqtl_in_hotspot_ratio.pl ##统计/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/Cis_eQTL/hotspot_cis_eQTL_overlap_SNP/${tissue}_segment_hotspot_cutoff_${cutoff}_SNP.bed.gz中eQTL在SNP中的比例得/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/${tissue}/${tissue}_cis_eQTL_in_hotspot_ratio.gz
 
-
-
+Rscript 23_plot_boxplot.R
 #--------------------
 perl 30_annotation_marker.pl # #interval_18 时，对../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18/whole_blood_segment_${group}_cutoff_${cutoff}.bed.gz用annotation_chromatin_states_interval18.sh进行annotation,得$output_dir/$factor_$input_file_base_name  #包括histone marker #my @markers = ("H3K27ac","H3K27me3","H3K36me3","H3K4me1","H3K4me3","H3K9ac","H3K9me3","CHROMATIN_Accessibility","TFBS","CTCF");
 perl 31_filter_annotation_state.pl ##因为每个片段会被多个chrom state 注释，根据对hotspot的覆盖比例，选出覆盖比例最高的state, interval_18 时，对"../../output/${tissue}/Cis_eQTL/annotation/interval_18/ALL/${group}/${cutoff}/${state}_state_${tissue}_segment_${group}_cutoff_${cutoff}.bed.gz"进行过滤，得$dir/filter_$name

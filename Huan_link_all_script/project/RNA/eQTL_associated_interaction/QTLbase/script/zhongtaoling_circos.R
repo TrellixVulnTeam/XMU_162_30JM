@@ -13,12 +13,14 @@ seg.c = segAnglePo(seg.d, seg = seg.name)
 colors <- rainbow(22, alpha = 0.8)
 
 ####################AI_focal circos
-ai.clust = read.table(paste(CIRCOS, "AI_focal_clust_inputMC1.4.txt", sep = "/"), header = F, sep = " ", stringsAsFactors = F)
+# ai.clust = read.table(paste(CIRCOS, "AI_focal_clust_inputMC1.4.txt", sep = "/"), header = F, sep = " ", stringsAsFactors = F)
+ai.clust = read.table("AI_focal_clust_inputMC1.4.txt", header = F, sep = " ", stringsAsFactors = F)
 indx = which(ai.clust[, 6] < 10)
 ai.clustSL = ai.clust[indx, 1:6]
 ai.clustSM = ai.clust[-indx, 1:6]
 ai.clust = ai.clust[, 1:4]
-out.file <- paste(CIRCOS, "AI_focal_clust_circosMC1.4.pdf", sep = "/")
+# out.file <- paste(CIRCOS, "AI_focal_clust_circosMC1.4.pdf", sep = "/")
+out.file <- "AI_focal_clust_circosMC1.4.pdf"
 pdf(file = out.file, height = 8, width = 8, compress = TRUE)
 par(las = 1, mar = c(0.5, 0.5, 1, 0.5))
 plot(c(1,800), c(1,800), type= "n", axes = FALSE, xlab = "", ylab = "")

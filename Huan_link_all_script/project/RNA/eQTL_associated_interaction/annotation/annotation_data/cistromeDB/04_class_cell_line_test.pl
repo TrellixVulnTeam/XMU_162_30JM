@@ -39,7 +39,7 @@ open my $O3, '>', $fo3 or die "$0 : failed to open output file '$fo3' : $!\n";
 # open my $O2, "| gzip >$fo2" or die $!;
 
 
-print $O1 "Cell_line\tSite_primary\tHistology\tHist_Subtype1\n";
+print $O1 "Cell_line\tHistology\n";
 print $O3 "Cell_line\tCell_type\tTissue_type\n";
 print $O5 "Cell_line\tCell_type\tTissue_type\n";
 
@@ -50,15 +50,12 @@ while(<$I1>)
     chomp;
     my @f = split/\t/;
     my $CCLE_name = $f[0];
-    my $Site_primary = $f[4];
     my $Histology = $f[5];
-    my $Hist_Subtype1 =$f[6];
-    my $v= "$Site_primary\t$Histology\t$Hist_Subtype1";
     unless(/^CCLE/){
         my @t = split/_/,$CCLE_name;
         my $cell_name_r = $t[0];
         $cell_name_r =uc($cell_name_r);
-        $hash1{$cell_name_r}=$v;
+        $hash1{$cell_name_r}=$Histology;
     }
 }
 
@@ -87,9 +84,9 @@ foreach my $file(@files){
             $Cell_line_r =~ s/\_//g;
             $Cell_line_r =uc($Cell_line_r);
             if (exists $hash1{$Cell_line_r}){
-                my $v = $hash1{$Cell_line_r};
+                my $Histology = $hash1{$Cell_line_r};
                 # print $O1 "$Cell_line\t$Histology\n";
-                my $output = "$Cell_line\t$v";
+                my $output = "$Cell_line\t$Histology";
                 unless(exists $hash3{$output}){
                     $hash3{$output}=1;
                     print $O1 "$output\n";

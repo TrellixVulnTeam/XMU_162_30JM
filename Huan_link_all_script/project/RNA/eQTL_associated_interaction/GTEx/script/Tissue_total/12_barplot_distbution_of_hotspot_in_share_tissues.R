@@ -19,7 +19,7 @@ org<-read.table("11_share_tissue_number_count.txt.gz",header = T,sep = "\t") %>%
 color = "#5f939a"
 pdf("barplot_distbution_of_hotspot_in_share_tissues.pdf",height = 3.5,width = 3.8)
 p1 <-ggplot(org,mapping=aes(x=number_of_share_tissue,y=number_of_hotspots))+geom_bar(stat='identity',colour=color,fill =color,width=0.5 )+
-    p_theme+xlab("Number of share tissue") +ylab("Number of hotspots")
+    p_theme+xlab("Number of tissues") +ylab("Number of hotspots")
 print(p1)
 dev.off()
 

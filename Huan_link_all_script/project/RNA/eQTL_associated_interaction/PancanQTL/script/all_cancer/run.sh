@@ -36,3 +36,12 @@ perl 21_count_jaccard_index_similarity_cancer_cancer.pl #得100%绝对overlap文
 Rscript 22_heatmap_cancer_tissue_share.R
 
 Rscript 24_pathway_enrichment_plot.R
+perl 25_annotation_marker.pl  #annotation marker ,得"/home/huanhuan/project/RNA/eQTL_associated_interaction/annotation/annotation_data/cistromeDB/cancer_cell/HISTONE_MARK_AND_VARIANT/${cancer}/${marker}/merge_pos_info_narrow_peak_sort_union_sort.bed.gz";
+
+bedtools intersect -a ../../output/KIRP/Cis_eQTL/hotspot_cis_eQTL/interval_18/KIRP_segment_hotspot_cutoff_0.176.bed.gz  -b merge_pos_info_narrow_peak_sort_union_sort.bed |gzip > ../../output/KIRP/Cis_eQTL/anno/CHROMATIN_Accessibility_KIRP_segment_hotspot_cutoff_18.bed.gz
+
+perl 26_calculate_jaccard_index.pl #"../../output/${cancer}/Cis_eQTL/anno/${cancer}_segment_hotspot_cutoff_${cutoff}_marker_jaccard_index.txt.gz";
+perl 27_annotation_share_and_specific.pl  #"../../output/${cancer}/Cis_eQTL/anno/${cancer}_segment_hotspot_cutoff_${cutoff}_marker_jaccard_index_lable.txt.gz";
+Rscript 28_boxplot_marker_jaccard_index.R 
+Rscript 29_compare_specific_and_share_marker_fisher_test.R
+Rscript 30_geom_pointrange_specific_and_share_marker_fisher_test.R

@@ -61,7 +61,7 @@ for(state in marks){
     aa <-filter(rs,Marker==state)%>%filter(jaacard_index >0)%>%group_by(Class)%>%summarise(table(Class)%>%as.data.frame())%>%as.data.frame()
     a <-filter(aa,Class=="hotspot")$Freq
     r_c<-filter(aa,Class=="random")$Freq
-    pre_data <-matrix(c(a,r_c, nrow(hotspot)/7-a, nrow(hotspot)/7*1000-r_c), nrow = 2)
+    pre_data <-matrix(c(a,r_c, nrow(hotspot)/10-a, nrow(hotspot)/10*1000-r_c), nrow = 2)
 
     fisher_test_result <-fisher.test(pre_data,alternative = "greater")
     # fisher_test_result <-fisher.test(pre_data)
