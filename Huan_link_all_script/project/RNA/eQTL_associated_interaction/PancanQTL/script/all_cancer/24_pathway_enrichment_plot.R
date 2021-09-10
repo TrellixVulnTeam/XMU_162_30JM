@@ -42,20 +42,3 @@ pdf("./sig/all_gene_DAVID.pdf",width=15, height=10)
 CombinePlots(plist,ncol=2,nrow=2)
 dev.off()
 
-
-
-
-
-
-
-
-
-
-
-
-
-colnames(a)[4]="gene_ratio"
-ggplot(a,aes(x=gene_ratio,y=Term))+
-geom_point(aes(size=Count*2,color=-1*log10(PValue)))+scale_color_gradient(low="blue",high ="red")+
-  labs(color=expression(-log[10](PValue)),size="Gene",x="gene ratio",y="Pathway name",title="Pathway enrichment")+theme_bw()
-

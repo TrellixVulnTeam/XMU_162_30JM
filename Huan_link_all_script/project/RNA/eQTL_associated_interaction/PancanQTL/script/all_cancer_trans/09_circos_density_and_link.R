@@ -123,7 +123,7 @@ print("aaa")
 
 circos.clear()
 set.seed(80)
-figure_name <-paste0("09_",cancer,"normal_cis_trans_circos_assemble_1kb.pdf")
+figure_name <-paste0("09_",cancer,"_normal_cis_trans_circos_assemble_10kb.pdf")
 pdf(figure_name)
 par(mar = c(1, 1, 1, 1))
 circos.par(start.degree = 90)

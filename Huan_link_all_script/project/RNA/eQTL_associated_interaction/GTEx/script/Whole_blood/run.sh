@@ -2,6 +2,7 @@ perl 01_transform_varint_ID_hg38_to_hg19.pl #利用"../data/GTEx_Analysis_2017-0
 perl 02_Completion_snp_for_xQTL_by_1kg.pl # # 用"/share/data0/1kg_phase3_v5_hg19/EUR/1kg.phase3.v5.shapeit2.eur.hg19.all.SNPs.vcf.gz" 补全"${dir}/${tissue}${suffix}"; 得"../output/Whole_Blood_cis_eQTL_1kg_Completion.txt.gz"
 Rscript 03_NHP_big_par.R
 Rscript 04_histgram_density_interval.R
+Rscript 04_violin_plot_emplamda.R
 Rscript 05_histgram_density_interval_chr_specific.R
 perl 06_filter_hotspot_for_interval18_chr1_22.pl ######../../output/Whole_Blood/Cis_eQTL/NHP/NHPoisson_emplambda_interval_${j}_cutoff_7.3_Whole_Blood.txt.gz 时得不同cutoff下的hotspot(segment),"../../output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/whole_blood_segment_hotspot_cutoff_${cutoff}_chr1_22.bed.gz"
 #----------------
@@ -58,5 +59,5 @@ perl 33_calculate_jaccard_index_mark.pl #对 $input_dir/${mark}_${tissue}_segmen
 
 
 
-
+Rscript 34_qqman.R 
 

@@ -1,4 +1,4 @@
-#统计 #"../../output/Tissue_total/share/total/06_all_tissue_share_hotspot_total_contain.bed.gz"得"../../output/Tissue_total/11_share_tissue_number_count.txt.gz"
+#统计 #"../../output/cancer_total/share/total/32_all_tissue_share_hotspot_total_contain.bed.gz"得"../../output/cancer_total/share/total/33_share_cancer_number_count.txt.gz"
 #!/usr/bin/perl
 use warnings;
 use strict; 
@@ -12,13 +12,13 @@ my $j = 18;
 
 
 
-my $f1 = "../../output/Tissue_total/share/total/06_all_tissue_share_hotspot_total_contain.bed.gz";
+my $f1 = "../../output/cancer_total/share/total/32_all_tissue_share_hotspot_total_contain.bed.gz";
 open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件  
 
-my $fo1 = "../../output/Tissue_total/11_share_tissue_number_count.txt.gz";
+my $fo1 = "../../output/cancer_total/share/total/33_share_cancer_number_count.txt.gz";
 open my $O1, "| gzip >$fo1" or die $!;
 
-print $O1 "number_of_share_tissue\tnumber_of_hotspots\n";
+print $O1 "number_of_share_cancer\tnumber_of_hotspots\n";
 
 #----------------
 

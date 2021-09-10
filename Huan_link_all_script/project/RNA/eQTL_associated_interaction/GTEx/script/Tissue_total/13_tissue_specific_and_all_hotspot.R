@@ -46,4 +46,19 @@ print(p1)
 dev.off()
 
 
+all_hotspot$Tissue<-factor(all_hotspot$Tissue,levels= sort(all_hotspot$Tissue,decreasing = T))
+pdf("13_number_of_hotspot_tissue.pdf")
 
+# pdf("13_tissue_specific_and_all_tissue.pdf",height = 7,width = 7.5)
+p1 <-ggplot(all_hotspot,aes(x=Tissue,y=Number,fill="#1eae98"))+
+    geom_bar(stat='identity',width=0.5)+
+    # scale_fill_manual(values="#1eae98")+
+    p_theme+xlab("Tissue") +ylab("Number of hotspots") +
+    coord_flip()+
+    scale_y_continuous(expand=c(0,0))+
+    theme(axis.text.y = element_text(color="black"),
+    axis.text.x = element_text(color="black"),
+   legend.position = "none" )
+
+print(p1)   
+dev.off()

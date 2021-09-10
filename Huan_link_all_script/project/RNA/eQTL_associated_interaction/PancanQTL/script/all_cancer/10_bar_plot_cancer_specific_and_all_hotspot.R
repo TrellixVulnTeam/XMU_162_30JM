@@ -48,10 +48,12 @@ p1 <-ggplot(cancer_f,aes(x=cancer_tissue,y=Number,fill=Class))+
 print(p1)   
 dev.off()
 
+cancer <-inner_join(cancer_all,cancer_sp,by="cancer")
+colnames(cancer)[2] <-"number_of_all_hotspot"
+colnames(cancer)[4] <-"number_of_cancer_specific_hotspot"
+cancer$cancer_specific_ratio <-cancer$number_of_cancer_specific_hotspot/cancer$number_of_all_hotspot *100
 
-
-
-
+write.table(cancer ,"10_cancer_specific_ratio.txt",row.names = F, col.names = T,quote =F,sep="\t")
 
 
 

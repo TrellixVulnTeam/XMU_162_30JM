@@ -20,11 +20,15 @@ perl 09_count_tissue_all_and_specific_hotspot.pl  ##得"../../output/Tissue_tota
 perl 10_count_jaccard_index_similarity_tissue_tissue.pl ##得100%绝对overlap文件../../output/Tissue_total/10_tissue_pair_ovelap_absolute.txt.gz，得没有在../../output/Tissue_total/10_tissue_pair_ovelap_absolute.txt.gz中的片段"../../output/Tissue_total/10_tissue_pair_out_ovelap_absolute.txt.gz"
 #得用于计算类似jaccard index 数据"../../output/Tissue_total/10_tissue_pair_overlap_index_and_related_number.txt.gz"，得类似jaccard index "../../output/Tissue_total/10_tissue_pair_overlap_index.txt.gz"
 
-perl 11_count_share_tissue_number.pl  #"../../output/Tissue_total/share/total/06_all_tissue_share_hotspot_total_contain.bed.gz"
+perl 11_count_share_tissue_number.pl #统计 #"../../output/Tissue_total/share/total/06_all_tissue_share_hotspot_total_contain.bed.gz"得"../../output/Tissue_total/11_share_tissue_number_count.txt.gz"
 
-
-
+perl 11_1_extract_max_tissue_share_hotspot.pl  #extract_max_tissue_share_hotspot,得../../output/Tissue_total/11_1_extract_max_tissue_share_hotspot.txt.gz
+perl 11_2_extract_eqtl_egene.pl ##将每个组织进行显著eQTL-eGene的提取，得"$out_dir/${tissue}_cis_sig_eQTL_egene.txt.gz"，排序后和排序后的"../../output/Tissue_total/11_1_extract_max_tissue_share_hotspot_sorted.txt.gz"进行 bedtools intersect,得"../../output/Tissue_total/gene/49_share_hotspot_${tissue}_gene.txt.gz"
 #----------------------plot
+Rscript 11_3_intersect_gene.R 
+#---------david得11_3_49_union_david.txt
+Rscript 11_4_pathway_enrichment_plot.R 
+
 
 
 Rscript 12_barplot_distbution_of_hotspot_in_share_tissues.R 
@@ -36,4 +40,9 @@ Rscript 14_heatmap_tissue_tissue_share.R
 perl 15_split_hotspot.pl  #将hotspot makewindows 1MB  ../../output/${tissue1}/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/${tissue11}_segment_hotspot_cutoff_${cutoff}_makewin_1MB.bed.gz
 
 Rscript 16_circos_hotspot_heatmap.R  
+
+Rscript 17_violin_plot_hotspo_length.R 
+
+
+
 

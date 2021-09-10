@@ -45,3 +45,16 @@ perl 27_annotation_share_and_specific.pl  #"../../output/${cancer}/Cis_eQTL/anno
 Rscript 28_boxplot_marker_jaccard_index.R 
 Rscript 29_compare_specific_and_share_marker_fisher_test.R
 Rscript 30_geom_pointrange_specific_and_share_marker_fisher_test.R
+
+
+
+perl 31_bedtools_cancer_mutual_absolute.pl  ##cancer两两之间进行 intersect ，找全部share的hotspot,得汇总文件"../../output/cancer_total/share/total/31_absolute_cancer_intersect.bed.gz"
+perl 32_merge_global_tissue_share_hotspot.pl ##对 "../../output/cancer_total/share/total/31_absolute_cancer_intersect.bed.gz" 进行 tissue合并得../../output/cancer_total/share/total/32_all_tissue_share_hotspot_total_contain.bed.gz
+
+perl 33_count_share_tissue_number.pl #统计 #"../../output/cancer_total/share/total/32_all_tissue_share_hotspot_total_contain.bed.gz"得"../../output/cancer_total/share/total/33_share_cancer_number_count.txt.gz"
+
+Rscript 34_barplot_distbution_of_hotspot_in_share_tissues.R
+perl 35_1_extract_max_cancer_share_hotspot.pl
+perl 35_2_extract_eqtl_egene.pl
+Rscript 35_3_intersect_gene.R
+"/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/script/Tissue_total/11_3_intersect_gene.R"
