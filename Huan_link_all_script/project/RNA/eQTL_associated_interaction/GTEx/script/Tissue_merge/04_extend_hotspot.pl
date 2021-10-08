@@ -16,12 +16,12 @@ my $f1 = "/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Tis
 open( my $I1 ,"gzip -dc $f1|") or die ("can not open input file '$f1' \n"); #读压缩文件
 my $f2 = "/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Tissue_merge/Cis_eQTL/hotspot_cis_eQTL/interval_18/Tissue_merge_segment_hotspot_cutoff_0.176.bed.gz";
 # open my $I1, '<', $f1 or die "$0 : failed to open input file '$f1' : $!\n"; 
-open( my $I2 ,"gzip -dc $f1|") or die ("can not open input file '$f2' \n"); #读压缩文件
+open( my $I2 ,"gzip -dc $f2|") or die ("can not open input file '$f2' \n"); #读压缩文件
 my $fo3 = "/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Tissue_merge/Cis_eQTL/hotspot_cis_eQTL/interval_18/Tissue_merge_segment_hotspot_cutoff_0.176_extend.bed.gz";
 open my $O3, "| gzip >$fo3" or die $!;
 
 
-print "$tissue\tstart\n";
+# print "$tissue\tstart\n";
 my (%hash1,%hash2);
 while(<$I1>)
 {
@@ -38,6 +38,7 @@ while(<$I1>)
     }
 }
 
+print "2 start\n";
 while(<$I2>)
 {
     chomp;
@@ -71,4 +72,6 @@ while(<$I2>)
     }
 }
 
+
+close($O3);
 system "zless $fo3 |sort -k1,1 -k2,2n |gzip >/home/huanhuan/project/RNA/eQTL_associated_interaction/GTEx/output/Tissue_merge/Cis_eQTL/hotspot_cis_eQTL/interval_18/Tissue_merge_segment_hotspot_cutoff_0.176_extend_sorted.bed.gz"

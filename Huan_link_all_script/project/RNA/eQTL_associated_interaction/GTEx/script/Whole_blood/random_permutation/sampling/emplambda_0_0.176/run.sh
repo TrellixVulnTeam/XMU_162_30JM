@@ -1,6 +1,6 @@
-perl 01_filter_emplambda_0_0.176_segment.pl ###过滤出../../../../../output/Whole_Blood/Cis_eQTL/NHP/NHPoisson_emplambda_interval_${j}_cutoff_7.3_Whole_Blood.txt.gz 中emplambda$emplambda >0 && $emplambda<0.176，得 "../../../../../output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/sampling/whole_blood_segment_hotspot_cutoff_more_0_and_less_than_0.176.bed.gz"
-perl 02_random_genomic_resemble_hotspot.pl #产生10000个与../../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18/whole_blood_segment_${group}_cutoff_${cutoff}.bed.gz相同的resemble hotspot,"$output_dir/${i}_resemble_${input_file_base_name}",
-#whole_blood_segment_hotspot_cutoff_more_0_and_less_than_0.176.bed.gz
+# perl 01_filter_emplambda_0_0.176_segment.pl ###过滤出../../../../../output/Whole_Blood/Cis_eQTL/NHP/NHPoisson_emplambda_interval_${j}_cutoff_7.3_Whole_Blood.txt.gz 中emplambda$emplambda >0 && $emplambda<0.176，得 "../../../../../output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/sampling/whole_blood_segment_hotspot_cutoff_more_0_and_less_than_0.176.bed.gz"
+# perl 02_random_genomic_resemble_hotspot.pl #产生10000个与../../../output/${tissue}/Cis_eQTL/${group}_cis_eQTL/interval_18/whole_blood_segment_${group}_cutoff_${cutoff}.bed.gz相同的resemble hotspot,"$output_dir/${i}_resemble_${input_file_base_name}",
+# #whole_blood_segment_hotspot_cutoff_more_0_and_less_than_0.176.bed.gz
 
 perl 01_filter_emplambda_0_0.176_segment_fact.pl ###过滤出../../../../../output/Whole_Blood/Cis_eQTL/NHP/NHPoisson_emplambda_interval_${j}_cutoff_7.3_Whole_Blood.txt.gz 中$emplambda<0.176，得 "../../../../../output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/sampling/whole_blood_segment_hotspot_cutoff_0_0.176.bed.gz
 

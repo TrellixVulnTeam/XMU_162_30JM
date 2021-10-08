@@ -1,4 +1,4 @@
-
+#download getx related marks to "/share/data0/GTEx/annotation/ROADMAP/sample/${roadmap_ID}
 #!/usr/bin/perl
 use warnings;
 use strict; 

@@ -1,4 +1,4 @@
-###过滤出../../../../../output/Whole_Blood/Cis_eQTL/NHP/NHPoisson_emplambda_interval_${j}_cutoff_7.3_Whole_Blood.txt.gz 中emplambda$emplambda >0 && $emplambda<0.176，得 "../../../../../output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/sampling/whole_blood_segment_hotspot_cutoff_more_0_and_less_than_0.176.bed.gz"
+###过滤出../../../../../output/Whole_Blood/Cis_eQTL/NHP/NHPoisson_emplambda_interval_${j}_cutoff_7.3_Whole_Blood.txt.gz 中emplambda$emplambda <0.176，得 "../../../../../output/Whole_Blood/Cis_eQTL/hotspot_cis_eQTL/interval_${j}/sampling/whole_blood_segment_hotspot_cutoff_0_0.176.bed.gz"
 #!/usr/bin/perl
 use warnings;
 use strict; 
